@@ -1,0 +1,35 @@
+{
+    "name": "send-to-supercollider",
+    "main": "index.js",
+    "version": "0.1.1",
+    "description": "Example of how to send messages to sclang from a Node.js app.",
+    "author": "Colin Clark",
+    "homepage": "http://flockingjs.org/",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/colinbdclark/osc.js-examples.git"
+    },
+    "readmeFilename": "README.md",
+    "bugs": "https://github.com/colinbdclark/osc.js/issues",
+    "license": "(MIT OR GPL-2.0)",
+    "keywords": [
+        "Open Sound Control",
+        "OSC",
+        "sound",
+        "audio",
+        "music",
+        "Flocking"
+    ],
+    "dependencies": {
+        "d3": "^5.9.2",
+        "express": "^4.16.4",
+        "express-pino-logger": "^4.0.0",
+        "json": "^9.0.6",
+        "node-fetch": "^2.5.0",
+        "node-fetch-polyfill": "^2.0.6",
+        "osc": "^2.2.4",
+        "osc-js": "^2.0.3",
+        "underscore": "^1.9.1",
+        "ws": "^6.2.1"
+    }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <!-- <meta http-equiv="content-type" content="text/html; charset=utf-8" /> -->
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <title>AI Experiment</title>
+    <script type="text/javascript" src="js/d3.v5.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="/js/osc.min.js"></script>
+    <!-- <script src="/js/experiment.js"></script>  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- <script type="text/javascript" src="experiment_data.json"></script> -->
+  </head>
+
+  <body>
+    <div>
+        <form id="form">
+
+        <span class="formLb">Participant:</span>
+        <select class="select" id="participantSel" onchange="onchangeParticipant()"></select>
+        
+        
+
+    </div>
+    <!-- <button onclick="myFunction(data)">show cand info </button> -->
+    <div id="wrap"></div>
+      
+  
+
+  <h1> Brief overview of experiment </h1>
+  <div id= "intro"></div>
+  <br>
+  <button id="start" >Begin!</button>
+  <button id="go" >Go!</button>
+    
+<script> 
+    
+  document.getElementById("intro").innerHTML ='You have been hired as an admissions officer at a large private university X, for it\'s newly offered International Master\'s program. Your task is to review potential applicants to the program, and decide whether the candidate is a good fit for the school. You will be evaluated based on the accuracy of your predictions. <br> Click on Begin to proceed.';
+      
+    
+    </script>    
+    <script src="/js/index.js"></script> 
+    
+  </body>
+  
+</html>

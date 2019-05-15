@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Admissions AI Experiment</title>
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="js/d3.v5.min.js"></script>
+        <script type="text/javascript" src="js/experiment.js"></script>
+        <script src="pretask1.html"></script>
+        <link rel="stylesheet" type="text/css" href="instructionsstyle.css">
+    </head>
+    <body>
+    	<div>
+        <span class="formLb">Participant:</span>
+        <select class="select" id="participantSel" onchange="onchangeParticipant()">       
+        </select>
+        
+        <!-- <a href="/preques.html">go to the first questionnair</a> -->
+        <script type="text/javascript">
+        	// loads participants from the csv file to the select element
+        	function loadData() {
+
+  				d3.csv("ExpMixed5Blocks.csv").then(function(data) {
+    				ctx.trials = data;
+
+    				var participant = "";
+    				var options = [];
+
+				    for(var i = 0; i < ctx.trials.length; i++) {
+				      if(!(ctx.trials[i][ctx.participantIndex] === participant)) {
+				        participant = ctx.trials[i][ctx.participantIndex];
+				        $("select#participantSel").append('<option value="' + participant + '">Participant '+ participant +'</option>');
+				      }
+				    }
+				 });
+			}
+
+			loadData();
+
+			$('select#participantSel').change(function(){
+                // selectValue = d3.select('#participantSel').property('value');
+				localStorage.setItem('participant', $(this).val());
+				location.href = '/Instructions1.html';
+/*
+				var par = localStorage.getItem('participant');
+				console.log(par);*/
+			});		
+
+            
+
+        </script>
+    </body>

@@ -1,0 +1,425 @@
+<html class=" csspointerevents pointerevents">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>AI Experiment</title>
+    <!-- Style -->
+    <style type="text/css">
+        body { 
+        background-color: #EEEEEE; 
+        padding-bottom: 24px; 
+        line-height: 1.5em; 
+        padding: 10px; 
+      }
+      
+      div.s2t-logo img { 
+        max-width: 100%; 
+        box-sizing: border-box; 
+      }
+      
+      div.s2t-logo { 
+        text-align: center 
+      }
+      
+      div.s2t-logo img:first-child { 
+        margin-bottom: 30px; 
+        padding: 0 40px 10px 40px; 
+      }
+      
+      div.questionary { 
+        background-color: white; 
+        border: 1px solid #53d3bb; 
+        min-width: 320px; 
+        max-width: 780px; 
+        box-sizing: border-box; 
+        padding: 20px; 
+        margin: 0 auto; 
+      }
+      
+      hr { 
+        height: 2px; 
+        background-color: transparent; 
+        border: 0 none; 
+        border-bottom: 2px solid #CCCCCC; 
+        margin: 40px 0 
+      }
+      
+      a { 
+        text-decoration: none; 
+      }
+      
+      h1 { 
+        text-align: center; 
+        font-weight: normal; 
+        font-size: 24px 
+      }
+      
+      h2 { 
+        text-align: center; 
+        font-weight: normal; 
+        font-size: 18px 
+      }
+
+      div.s2t-footer {
+        display: -webkit-box; 
+        display: -moz-box; 
+        display: -ms-flexbox; 
+        display: -webkit-flex; 
+        display: flex;
+      }
+
+      div.s2t-imprint {
+        width: 520px;
+        -webkit-box-flex: 9;
+        -moz-box-flex: 9;
+        -webkit-flex: 9 1 520px;
+        -ms-flex: 9 1 520px;
+        flex: 9 1 520px;
+        max-width: 100%;
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -ms-flex-order: 1;
+        -webkit-order: 1;
+        order: 1;
+      }
+
+      @media (max-width: 560px) {
+        div.s2t-footer { 
+          display: block; 
+        }
+        
+        div.s2t-progress { 
+          margin: 0 0 16px 0; 
+        }
+        
+        div.s2t-logo img:first-child { 
+          padding: 0 20px 10px 20px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        body { 
+          padding: 0; 
+        }
+        
+        div.questionary { 
+          padding: 10px; 
+        }
+        
+        div.s2t-logo img:first-child { 
+          padding: 0 0 10px 0; 
+        }
+      }
+      
+      div.head.selscale { 
+        background-color: #BAD0FF; 
+        color: #000000;
+      }
+      
+      div.head { 
+        background-color: transparent; 
+        color: #000000; 
+      }
+      
+      table.question td.anchor, div.question div.anchor, table.question th, table.question th.subheading { 
+        background-color: transparent; 
+        color: #000000 
+      }
+
+      div.chapter h1 { 
+        background-color: #53d3bb; 
+        color: white; 
+        font-weight: bold; 
+        text-align: right; 
+        padding: 3px 16px 0 16px; 
+        font-size: 38px; 
+        line-height: 1em; 
+        margin-bottom: -0.16em; 
+      }
+      
+      div.chapter > div { 
+        background-color: #BAD0FF; 
+        padding: 20px 16px 10px 16px 
+      }
+      
+      div.chapter > div > p:first-child { 
+        margin-top: 0; 
+      }
+      
+      div.chapter > div > p:last-child { 
+        margin-bottom: 0; 
+      }
+      
+      body {
+        font-size: 14px;
+        font-family: sans-serif;
+        color: #333;
+      }
+      
+      .centerblock {
+        background-color: #53d3bb;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: sans-serif;
+        color: #ffffff; 
+        text-align:center;
+      }
+      
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      input.MyButton {
+        width: 80px;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 130%;
+        background: #53d3bb;
+        color: #ffffff;
+        border: 1px solid #53d3bb;
+        border-radius: 10px;
+      }
+      
+      input.MyButton:hover {
+        color: #ffff00;
+        background: #000;
+        border: 1px solid #fff;
+      }
+      
+      input.MyButton:disabled {
+        background: #F5F5F5;
+        color : #C3C3C3;
+        cursor:none;
+        pointer-events: none;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="instructionsstyle.css">
+  </head>
+  <body>
+    <div class="invisible">
+      <input type="hidden" name="i" value="RFWI5D2NVCSW">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="l" value="fre">
+      <input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
+    </div>
+    <div class="questionary">
+      <div class="s2t-logo">
+        <img src="javephy.png" alt="" class="s2-logo">
+      </div>
+      <!-- THE UNI TITLE -->
+      <div class="centerblock">
+        <div class="square"><p>JAVE PHY UNIVERSITY</p></div>
+      </div>
+      <div class="titleSpacing"></div>
+      <br>
+      <div style="text-align:justify;">
+      Below is a list of statements for evaluating trust between you and JaveAI. There are several scales for you to rate intensity of your feeling of trust, or your impression of JaveAI. We know you have not used it yet, just go with your intuition. Please, choose on each line the point which best describes your feeling or your impression (7 - totally agree; 1 - totally disagree).</div>
+          <br><br>
+      <div id="results"></div>
+
+<style type="text/css"></style>
+  <!-- <div id="container"></div> -->
+  <table id="quesTable" class="striped-columns border">
+    <thead>
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>JaveAI is deceptive</td>
+            <td><input type="radio" value="1" name="deceptive"/></td>
+            <td><input type="radio" value="2" name="deceptive"/></td>
+            <td><input type="radio" value="3" name="deceptive"/></td>
+            <td><input type="radio" value="4" name="deceptive"/></td>
+            <td><input type="radio" value="5" name="deceptive"/></td>
+            <td><input type="radio" value="6" name="deceptive"/></td>
+            <td><input type="radio" value="7" name="deceptive"/></td>
+        </tr>
+        <tr>
+            <td>JaveAI behaves in an underhanded manner (<i>underhanded = deceitful, dishonest</i>)</td>
+            <td><input type="radio" value="1" name="underhanded"/></td>
+            <td><input type="radio" value="2" name="underhanded"/></td>
+            <td><input type="radio" value="3" name="underhanded"/></td>
+            <td><input type="radio" value="4" name="underhanded"/></td>
+            <td><input type="radio" value="5" name="underhanded"/></td>
+            <td><input type="radio" value="6" name="underhanded"/></td>
+            <td><input type="radio" value="7" name="underhanded"/></td>
+        </tr>
+        <tr>
+            <td>I am suspicious of the JaveAI&apos;s intent, action, and outputs</td>
+            <td><input type="radio" value="1" name="suspicious"/></td>
+            <td><input type="radio" value="2" name="suspicious"/></td>
+            <td><input type="radio" value="3" name="suspicious"/></td>
+            <td><input type="radio" value="4" name="suspicious"/></td>
+            <td><input type="radio" value="5" name="suspicious"/></td>
+            <td><input type="radio" value="6" name="suspicious"/></td>
+            <td><input type="radio" value="7" name="suspicious"/></td>
+        </tr>
+        <tr>
+            <td>I am wary of JaveAI</td>
+            <td><input type="radio" value="1" name="wary"/></td>
+            <td><input type="radio" value="2" name="wary"/></td>
+            <td><input type="radio" value="3" name="wary"/></td>
+            <td><input type="radio" value="4" name="wary"/></td>
+            <td><input type="radio" value="5" name="wary"/></td>
+            <td><input type="radio" value="6" name="wary"/></td>
+            <td><input type="radio" value="7" name="wary"/></td>
+        </tr>
+        <tr>
+            <td>The JaveAI&apos;s actions will have a harmful or injurious outcome</td>
+            <td><input type="radio" value="1" name="harm"/></td>
+            <td><input type="radio" value="2" name="harm"/></td>
+            <td><input type="radio" value="3" name="harm"/></td>
+            <td><input type="radio" value="4" name="harm"/></td>
+            <td><input type="radio" value="5" name="harm"/></td>
+            <td><input type="radio" value="6" name="harm"/></td>
+            <td><input type="radio" value="7" name="harm"/></td>
+        </tr>
+        <tr>
+            <td>I am confident in the JaveAI</td>
+            <td><input type="radio" value="1" name="confident"/></td>
+            <td><input type="radio" value="2" name="confident"/></td>
+            <td><input type="radio" value="3" name="confident"/></td>
+            <td><input type="radio" value="4" name="confident"/></td>
+            <td><input type="radio" value="5" name="confident"/></td>
+            <td><input type="radio" value="6" name="confident"/></td>
+            <td><input type="radio" value="7" name="confident"/></td>
+        </tr>
+
+        <tr>
+            <td>JaveAI provides security</td>
+            <td><input type="radio" value="1" name="security"/></td>
+            <td><input type="radio" value="2" name="security"/></td>
+            <td><input type="radio" value="3" name="security"/></td>
+            <td><input type="radio" value="4" name="security"/></td>
+            <td><input type="radio" value="5" name="security"/></td>
+            <td><input type="radio" value="6" name="security"/></td>
+            <td><input type="radio" value="7" name="security"/></td>
+        </tr>
+        <tr>
+            <td>JaveAI has integrity</td>
+            <td><input type="radio" value="1" name="integrity"/></td>
+            <td><input type="radio" value="2" name="integrity"/></td>
+            <td><input type="radio" value="3" name="integrity"/></td>
+            <td><input type="radio" value="4" name="integrity"/></td>
+            <td><input type="radio" value="5" name="integrity"/></td>
+            <td><input type="radio" value="6" name="integrity"/></td>
+            <td><input type="radio" value="7" name="integrity"/></td>
+        </tr>
+        <tr>
+            <td>JaveAI is dependable</td>
+            <td><input type="radio" value="1" name="dependable"/></td>
+            <td><input type="radio" value="2" name="dependable"/></td>
+            <td><input type="radio" value="3" name="dependable"/></td>
+            <td><input type="radio" value="4" name="dependable"/></td>
+            <td><input type="radio" value="5" name="dependable"/></td>
+            <td><input type="radio" value="6" name="dependable"/></td>
+            <td><input type="radio" value="7" name="dependable"/></td>
+        </tr>
+        <tr>
+            <td>JaveAI is reliable</td>
+            <td><input type="radio" value="1" name="reliable"/></td>
+            <td><input type="radio" value="2" name="reliable"/></td>
+            <td><input type="radio" value="3" name="reliable"/></td>
+            <td><input type="radio" value="4" name="reliable"/></td>
+            <td><input type="radio" value="5" name="reliable"/></td>
+            <td><input type="radio" value="6" name="reliable"/></td>
+            <td><input type="radio" value="7" name="reliable"/></td>
+        </tr>
+        <tr>
+            <td>I can trust JaveAI</td>
+            <td><input type="radio" value="1" name="trust"/></td>
+            <td><input type="radio" value="2" name="trust"/></td>
+            <td><input type="radio" value="3" name="trust"/></td>
+            <td><input type="radio" value="4" name="trust"/></td>
+            <td><input type="radio" value="5" name="trust"/></td>
+            <td><input type="radio" value="6" name="trust"/></td>
+            <td><input type="radio" value="7" name="trust"/></td>
+        </tr>
+        <tr>
+            <td>I am familiar with JaveAI</td>
+            <td><input type="radio" value="1" name="familiar"/></td>
+            <td><input type="radio" value="2" name="familiar"/></td>
+            <td><input type="radio" value="3" name="familiar"/></td>
+            <td><input type="radio" value="4" name="familiar"/></td>
+            <td><input type="radio" value="5" name="familiar"/></td>
+            <td><input type="radio" value="6" name="familiar"/></td>
+            <td><input type="radio" value="7" name="familiar"/></td>
+        </tr>
+    </tbody>
+</table>  
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/d3.v5.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#radioValidate').click(function(){
+      var allIsanswered = true;
+      $('#quesTable tbody tr').each(function() {
+          if ($(this).find('td input[type="radio"]:checked').length == 0) {
+            allIsanswered = false;
+          }
+      });
+
+      if (!allIsanswered) {
+        alert('You have not answered all the questions');
+      } else {
+          var logArray = [];
+          $('#quesTable tbody tr').each(function(){
+              let question = $(this).find('td').first().text();
+              var answer = $(this).find('td input[type="radio"]:checked').first().val();
+              // suppose we have questionner id = 1 (we have to load data to detect which id 1 or 2)
+              var quesId = 21;
+              logArray.push(localStorage.getItem('participant') + ', ' +question + ', ' + answer + ', ' + quesId);
+          });
+          
+          console.log(logArray);
+          StartExp();
+        }
+      });
+    });
+
+    function StartExp() {
+        window.location.href='trial2.html';
+      }
+</script>
+<p class="sceditor-nlf" style="text-align:justify;"><br></p>
+
+<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
+        <colgroup>
+          <col width="*">
+          <col width="*">
+          <col width="*">
+        </colgroup>
+        <tbody>
+          <tr>
+            <td style="text-align: left"></td>
+            <td style="text-align: center; font-size: 75%"><input class="MyButton" type="button" value="Submit" id="radioValidate" title="Next Page" tabindex="200" ></td>
+            <!-- <td style="text-align: right"><input class="MyButton" type="button" value="Proceed" id="Proceed" title="Next Page" tabindex="200" onclick="window.location.href='trial2.html'" disabled="disabled" ></td> -->
+          </tr>
+        </tbody>
+      </table>
+      <hr style="margin: 40px 0 10px 0">
+      <div class="s2t-footer"></div>
+        <div class="s2t-imprint"><font size="-1">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 and Paris-Saclay - 2019</font></div>
+      </div>
+    </div>
+    <div>
+      <input name="zomplete" value="yes" type="hidden">
+    </div>
+    <div>
+      <input name="page_form_width" type="hidden" value="933">
+    </div>
+  </body>
+</html>

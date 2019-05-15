@@ -1,0 +1,503 @@
+<html class=" csspointerevents pointerevents">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<script src="js/experiment.js"></script>
+		<title>AI Experiment</title>
+
+		<!-- STYLE SLIDER -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		
+		<!-- Style of the buttons in the table -->
+		<style type="text/css">
+			input.buttontable {
+				width: 200px;
+				padding: 10px;
+				cursor: pointer;
+				font-weight: bold;
+				font-size: 120%;
+				background: #53d3bb;
+				color: #ffffff;
+				border: 1px solid #53d3bb;
+				border-radius: 10px;
+			}
+
+			input.buttontable:hover {
+				color: #ffff00;
+				background: #000;
+				border: 1px solid #fff;
+			}
+
+			input.buttontable:disabled {
+				background: #F5F5F5;
+				color : #C3C3C3;
+				cursor:none;
+				pointer-events: none;
+			}
+		
+			body { 
+				background-color: #EEEEEE; 
+				padding-bottom: 24px; 
+				line-height: 1.5em; 
+				padding: 10px; 
+			}
+			
+			div.s2t-logo img { 
+				max-width: 100%; 
+				box-sizing: border-box; 
+			}
+			
+			div.s2t-logo { 
+				text-align: center 
+			}
+			
+			div.s2t-logo img:first-child { 
+				margin-bottom: 30px; 
+				padding: 0 40px 10px 40px; 
+			}
+			
+			div.questionary { 
+				background-color: white; 
+				border: 1px solid #53d3bb; 
+				min-width: 320px; 
+				max-width: 780px; 
+				box-sizing: border-box; 
+				padding: 20px; 
+				margin: 0 auto; 
+			}
+			
+			hr { 
+				height: 2px; 
+				background-color: transparent; 
+				border: 0 none; 
+				border-bottom: 2px solid #CCCCCC; 
+				margin: 40px 0 
+			}
+			
+			a { 
+				text-decoration: none; 
+			}
+			
+			h1 { 
+				text-align: center; 
+				font-weight: normal; 
+				font-size: 24px 
+			}
+			
+			h2 { 
+				text-align: center; 
+				font-weight: normal; 
+				font-size: 18px 
+			}
+
+			div.s2t-footer {
+			  display: -webkit-box; 
+			  display: -moz-box; 
+			  display: -ms-flexbox; 
+			  display: -webkit-flex; 
+			  display: flex;
+			}
+
+			div.s2t-imprint {
+				width: 520px;
+				-webkit-box-flex: 9;
+				-moz-box-flex: 9;
+				-webkit-flex: 9 1 520px;
+				-ms-flex: 9 1 520px;
+				flex: 9 1 520px;
+				max-width: 100%;
+				-webkit-box-ordinal-group: 1;
+				-moz-box-ordinal-group: 1;
+				-ms-flex-order: 1;
+				-webkit-order: 1;
+				order: 1;
+			}
+
+			@media (max-width: 560px) {
+				div.s2t-footer { 
+					display: block; 
+				}
+				
+				div.s2t-progress { 
+					margin: 0 0 16px 0; 
+				}
+				
+				div.s2t-logo img:first-child { 
+					padding: 0 20px 10px 20px;
+				}
+			}
+			
+			@media (max-width: 480px) {
+				body { 
+					padding: 0; 
+				}
+				
+				div.questionary { 
+					padding: 10px; 
+				}
+				
+				div.s2t-logo img:first-child { 
+					padding: 0 0 10px 0; 
+				}
+			}
+			
+			div.head.selscale { 
+				background-color: #BAD0FF; 
+				color: #000000;
+			}
+			
+			div.head { 
+				background-color: transparent; 
+				color: #000000; 
+			}
+			
+			table.question td.anchor, div.question div.anchor, table.question th, table.question th.subheading { 
+				background-color: transparent; 
+				color: #000000 
+			}
+			table {
+			   margin: 0px auto;  
+			}
+
+			div.chapter h1 { 
+				background-color: #53d3bb; 
+				color: white; 
+				font-weight: bold; 
+				text-align: right; 
+				padding: 3px 16px 0 16px; 
+				font-size: 38px; 
+				line-height: 1em; 
+				margin-bottom: -0.16em; 
+			}
+			
+			div.chapter > div { 
+				background-color: #BAD0FF; 
+				padding: 20px 16px 10px 16px 
+			}
+			
+			div.chapter > div > p:first-child { 
+				margin-top: 0; 
+			}
+			
+			div.chapter > div > p:last-child { 
+				margin-bottom: 0; 
+			}
+			
+			body {
+				font-size: 14px;
+				font-family: sans-serif;
+				color: #333;
+			}
+			
+			.centerblock {
+				background-color: #53d3bb;
+				padding-top: 2px;
+				padding-bottom: 2px;
+				font-size: 14px;
+				font-weight: bold;
+				font-family: sans-serif;
+				color: #ffffff; 
+				text-align:center;
+			}
+			
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			/* The Modal (background) */
+			
+			.modal {
+				display: none; /* Hidden by default */
+				position: fixed; /* Stay in place */
+				z-index: 1; /* Sit on top */
+				padding-top: 100px; /* Location of the box */
+				left: 0;
+				top: 0;
+				width: 100%; /* Full width */
+				height: 100%; /* Full height */
+				overflow: auto; /* Enable scroll if needed */
+				background-color: rgb(0,0,0); /* Fallback color */
+				background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			}
+
+			/* Modal Content */
+			
+			.modal-content {
+				background-color: #fefefe;
+				margin: auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 80%;
+			}
+
+			/* The Close Button */
+			
+			.close {
+				color: #aaaaaa;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+			}
+
+			.close:hover, .close:focus {
+				color: #000;
+				text-decoration: none;
+				cursor: pointer;
+			}
+			
+			input.myBtn{
+				float:right;
+				width: 40px;
+				padding: 10px;
+				cursor: pointer;
+				font-weight: bold;
+				font-size: 120%;
+				background: #53d3bb;
+				color: #ffffff;
+				border: 1px solid #53d3bb;
+				border-radius: 10px;
+			}
+
+			input.myBtn:hover {
+				color: #ffff00;
+				background: #000;
+				border: 1px solid #fff;
+			}
+
+			input.MyButton {
+				width: 80px;
+				padding: 10px;
+				cursor: pointer;
+				font-weight: bold;
+				font-size: 130%;
+				background: #53d3bb;
+				color: #ffffff;
+				border: 1px solid #53d3bb;
+				border-radius: 10px;
+			}
+			
+			input.MyButton:hover {
+				color: #ffff00;
+				background: #000;
+				border: 1px solid #fff;
+			}
+			
+			input.MyButton:disabled {
+				background: #F5F5F5;
+				color : #C3C3C3;
+				cursor:none;
+				pointer-events: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="instructionsstyle.css">
+	</head>
+	<body>
+		<div class="invisible">
+			<input type="hidden" name="i" value="RFWI5D2NVCSW">
+			<input type="hidden" name="page" value="1">
+			<input type="hidden" name="l" value="fre">
+			<input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
+		</div>
+		<div class="questionary">
+			<div class="s2t-logo">
+				<img src="javephy.png" alt="" class="s2-logo">
+			</div>
+			<!-- THE UNI TITLE -->
+			<div class="centerblock">
+				<div class="square"><p>JAVE PHY UNIVERSITY</p></div>
+			</div>
+			<div class="titleSpacing"></div>
+			<br>
+			<div style="text-align:justify;">
+				<!-- Trigger/Open The Modal -->
+				<input class="myBtn" type="button" value="?" id="myBtn" title="Info">
+				<!-- The Modal -->
+				<div id="myModal" class="modal">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<p>
+						<br>
+						1) <i><u>Importance and Colors</u></i>. <font color="#FF3B00">Very Important</font>, <font color="#00B3FF">Important</font>, <font color="#22E65C">Slightly Important</font>. Criteria with the same color have the same level of importance.
+						<br><br>
+						2) <i><u>What to click on</u></i>. First, click on "Accept" or "Reject". Then, "Run the AI". Then click on "Accept" or "Reject" if you want to change your decision. Press "Submit" to confirm it. Then, the slider. Lastly, 'Next'.
+						<br><br>
+						3) <i><u>Selection rules</u></i>. You would prefer if applicants have the <b>weighted average</b> of Biology, Chemistry, Physics, and Final Year grades of <b>at least 15.75</b>. However, if an applicant has participated in any club or club related to sciences or health, but has the <b>weighted average</b> below 15.75, <b>sometimes</b> this rule can be relaxed and the applicant can be accepted. Furthermore, if an applicant has participated in no clubs and has the <b>weighted average</b> above 15.75, <b>sometimes</b> the main rule can be disregarded and the applicant can be rejected. 
+						<br><br>
+						4) <i><u>Club</u></i>. Taking this criteria <b>alone</b>, you prefer students who participated in clubs related to <u>health and sciences</u> to students who participated in <u>other clubs</u>; you also prefer students who participated in other clubs to students who <u>never participated</u> in any clubs.
+					</p>
+				</div>
+			</div>
+			<br>
+			<br>
+			  <h2>Applicant: <var id="name"> </var>/15 </h2>
+
+			<div>
+			  <table id="infoTable" cellspacing=”10″ cellpadding=”10″ border = "1">
+			  	<colgroup>
+				    <col style="background-color:rgb(255, 60,0);">
+				    <col span="2" style="background-color:rgb(0, 179, 255);">
+				    <col span="2" style="background-color:rgb(34,230,92);">
+				</colgroup>
+			    <thead>
+			        <tr>
+			            <th>Physics </th>
+			            <th>Biology </th>
+			            <th>Chemistry </th>
+			            <th>Final Year </th>
+			            <th>Clubs </th>
+			          </tr>
+			    </thead>
+			    <tbody></tbody>
+			  </table>
+			</div>
+
+
+			<br>
+			<br>
+			<!-- The Main Part - Table -->
+			<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
+				<colgroup>
+					<col width="*">
+					<col width="*">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td style="text-align: center; font-size: 105%">
+							<p style="border:3px; border-style:solid; border-color:#53d3bb; padding: 1em;"><b>Your Decision</b></p><br>
+							<form action="#">
+								<p>
+								<label>
+								<input name="group1" type="radio"/>
+								<span>Accept</span>
+								</label>
+								</p> <br>
+								<p>
+								<label>
+								<input name="group1" type="radio" />
+								<span>Reject</span>
+								</label>
+								</p>
+								<br>
+							</form>
+							<form>
+								<input class="buttontable" type="button" value="Submit" id="Submit" title="Confirm your decision" disabled="disabled" onclick="Show()">
+							</form>
+						</td>
+						<td style="text-align: center"></td>
+						<td style="text-align: center; font-size: 105%">
+							<p style="border:3px; border-style:solid; border-color:#53d3bb; padding: 1em;"><b>JaveAI Recommendation</b></p>
+							<br><br>
+							<form>
+								<input class="buttontable" type="button" value="Run the AI" id="ai" title="Run the AI" disabled="disabled">
+								<!-- AI Recommendation -->
+								<p style="display:none" id="AIrec" style="border:3px; border-style:solid; border-color:#53d3bb; padding: 1em;"><b><var id="reco"></var>  the candidate</b></p>
+							</form>
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="sceditor-nlf" style="text-align:justify;"><br></p>
+			<!-- FOR THE BUTTONS IN THE BOTTOM IF ANY -->
+			<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
+				<colgroup>
+					<col width="*">
+					<col width="*">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td style="text-align: left"></td>
+						<td style="text-align: center; font-size: 75%">
+							<div id="trust"  style="display:none;">
+								<font size="-1">Indicate your level of trust in this recommendation.<br>
+									0 - no trust at all; 100 - complete trust.
+								</font>
+								<br><br>
+								<input id="slider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+							</div>
+							<!-- Slider End-->
+						</td>
+						<td style="text-align: right"><input id="send" class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" disabled="disabled"></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr style="margin: 40px 0 10px 0">
+			<div class="s2t-footer"></div>
+				<div class="s2t-imprint"><font size="-1">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 and Paris-Saclay - 2019</font></div>
+			</div>
+		</div>
+		<div>
+			<input name="zomplete" value="yes" type="hidden">
+		</div>
+		<div>
+			<input name="page_form_width" type="hidden" value="933">
+		</div>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/css/bootstrap-slider.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/bootstrap-slider.min.js"></script>
+		<script type="text/javascript" src="js/d3.v5.min.js"></script>
+		<script type="text/javascript">
+			// Get the modal
+			var modal = document.getElementById('myModal');
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("myBtn");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal 
+			btn.onclick = function() {
+			  modal.style.display = "block";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			  if (event.target == modal) {
+				modal.style.display = "none";
+			  }
+			}
+			
+			// Open Loading Screen for Some Time
+			function new_popup(){
+				var popupwin = window.open('http://localhost:8000/loadingentl.html');
+				setTimeout(function() { popupwin.close();}, 8000);
+			}
+			
+			// Show the slider once Submit is clicked
+			function Show() {
+				document.getElementById('trust').style.display = "";
+			}
+			
+			// To disable the AI button unless the initial choice is made
+			$("input:radio").change(function () {
+				$("#ai").prop("disabled", false);
+			});
+			
+			// To remove the AI button once it is clicked and to show the recommendation
+			$("#ai").click(function(){
+				$(this).remove();
+				$("#AIrec").show();
+			});
+			
+			// To enable the Submit button after the AI rec appeared
+			$("#ai").click(function(){
+				$("#Submit").prop("disabled", false);
+			});
+			
+			// To enable 'Next' once the slider is moved
+			$("#slider").on("slideStop", function() {
+				$(".MyButton").prop("disabled", null);
+			});
+		</script>
+	</body>
+</html>

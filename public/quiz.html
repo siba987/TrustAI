@@ -1,0 +1,407 @@
+<html class=" csspointerevents pointerevents">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>AI Experiment</title>
+    <!-- Stylesheet: Layout -->
+    <style type="text/css">
+      input.MyButton {
+        width: 80px;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 130%;
+        background: #5273b9;
+        color: #fff;
+        border: 1px solid #5273b9;
+        border-radius: 10px;
+      }
+
+      input.MyButton:hover {
+        color: #ffff00;
+        background: #000;
+        border: 1px solid #fff;
+      }
+
+      input.MyButton:disabled {
+        background: #F5F5F5;
+        color : #C3C3C3;
+        cursor:none;
+        pointer-events: none;
+      }
+
+      body { 
+        background-color: #EEEEEE; 
+        padding-bottom: 24px; 
+        line-height: 1.5em; 
+        padding: 10px; 
+      }
+      
+      div.s2t-logo img { 
+        max-width: 100%; 
+        box-sizing: border-box; 
+      }
+      
+      div.s2t-logo { 
+        text-align: center 
+      }
+      
+      div.s2t-logo img:first-child { 
+        margin-bottom: 30px; 
+        padding: 0 40px 10px 40px; 
+      }
+      
+      div.questionary { 
+        background-color: white; 
+        border: 1px solid #5273B9; 
+        min-width: 320px; 
+        max-width: 780px; 
+        box-sizing: border-box; 
+        padding: 20px; 
+        margin: 0 auto; 
+      }
+      
+      hr { 
+        height: 2px; 
+        background-color: transparent; 
+        border: 0 none; 
+        border-bottom: 2px solid #CCCCCC; 
+        margin: 40px 0 
+      }
+      
+      a { 
+        text-decoration: none; 
+      }
+      
+      h1 { 
+        text-align: center; 
+        font-weight: normal; 
+        font-size: 24px 
+      }
+      
+      h2 { 
+        text-align: center; 
+        font-weight: normal; 
+        font-size: 18px 
+      }
+
+      div.s2t-footer {
+        display: -webkit-box; 
+        display: -moz-box; 
+        display: -ms-flexbox; 
+        display: -webkit-flex; 
+        display: flex;
+      }
+
+      div.s2t-progress {
+        width: 280px;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -webkit-flex: 1 1 280px;
+        -ms-flex: 1 1 280px;
+        flex: 1 1 280px;
+        margin: 0 0 0 20px
+        -webkit-box-ordinal-group: 2;
+        -moz-box-ordinal-group: 2;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2; 
+      }
+
+      div.s2t-imprint {
+        width: 520px;
+        -webkit-box-flex: 9;
+        -moz-box-flex: 9;
+        -webkit-flex: 9 1 520px;
+        -ms-flex: 9 1 520px;
+        flex: 9 1 520px;
+        max-width: 100%;
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -ms-flex-order: 1;
+        -webkit-order: 1;
+        order: 1;
+      }
+
+      @media (max-width: 560px) {
+        div.s2t-footer { 
+          display: block; 
+        }
+        
+        div.s2t-progress { 
+          margin: 0 0 16px 0; 
+        }
+        
+        div.s2t-logo img:first-child { 
+          padding: 0 20px 10px 20px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        body { 
+          padding: 0; 
+        }
+        
+        div.questionary { 
+          padding: 10px; 
+        }
+        
+        div.s2t-logo img:first-child { 
+          padding: 0 0 10px 0; 
+        }
+      }
+      
+      div.head.selscale { 
+        background-color: #BAD0FF; 
+        color: #000000;
+      }
+      
+      div.head { 
+        background-color: transparent; 
+        color: #000000; 
+      }
+      
+      table.question td.anchor, div.question div.anchor, table.question th, table.question th.subheading { 
+        background-color: transparent; 
+        color: #000000 
+      }
+
+      div.chapter h1 { 
+        background-color: #f4e289; 
+        color: white; 
+        font-weight: bold; 
+        text-align: right; 
+        padding: 3px 16px 0 16px; 
+        font-size: 38px; 
+        line-height: 1em; 
+        margin-bottom: -0.16em; 
+      }
+      
+      div.chapter > div { 
+        background-color: #BAD0FF; 
+        padding: 20px 16px 10px 16px 
+      }
+      
+      div.chapter > div > p:first-child { 
+        margin-top: 0; 
+      }
+      
+      div.chapter > div > p:last-child { 
+        margin-bottom: 0; 
+      }
+               
+      body{
+        font-size: 16px;
+        font-family: sans-serif;
+        color: #333;
+      }
+
+      .question{
+            font-weight: 600;
+      }
+        
+      .answers {
+          margin-bottom: 20px;
+      }
+
+      .answers label{
+          display: block;
+      }
+
+      #submit{
+          font-family: sans-serif;
+          font-size: 10px;
+          background-color: #5273b9;
+          color: #fff;
+          border: 0px;
+          border-radius: 1px;
+          padding: 10px;
+          cursor: pointer;
+          margin-bottom: 20px;
+      }
+
+      #submit:hover{
+          background-color: #38a;
+      }
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="instructionsstyle.css">
+  </head>
+  <body>
+    <div class="invisible">
+      <input type="hidden" name="i" value="RFWI5D2NVCSW">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="l" value="fre">
+      <input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
+    </div>
+    <div class="questionary">
+      <div class="s2t-logo">
+        <img src="isir.png" alt="" class="s2-logo">
+      </div>
+      <!-- TEXT -->
+      <div class="title">
+        <p>Please, answer these questions if you are done with reading the instructions.</p>
+      </div>
+      <div class="titleSpacing"></div>
+        <br>
+          <div style="text-align:justify;">
+
+      <div id="quiz"></div>
+        <br>Press "Submit" to see the results.<br><br>
+      <button id="submit" onclick="enableStart()">Submit</button>
+      <div id="results"></div>
+
+<script>
+        function enableStart() {
+            document.getElementById("Start").disabled = false;
+        }
+    </script>
+
+<script type="text/javascript"></script>
+<script>
+(function() {
+  function buildQuiz() {
+    // we'll need a place to store the HTML output
+    const output = [];
+
+    // for each question...
+    myQuestions.forEach((currentQuestion, questionNumber) => {
+      // we'll want to store the list of answer choices
+      const answers = [];
+
+      // and for each available answer...
+      for (letter in currentQuestion.answers) {
+        // ...add an HTML radio button
+        answers.push(
+          `<label>
+            <input type="radio" name="question${questionNumber}" value="${letter}">
+            ${letter} :
+            ${currentQuestion.answers[letter]}
+          </label>`
+        );
+      }
+
+      // add this question and its answers to the output
+      output.push(
+        `<div class="question"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join("")} </div>`
+      );
+    });
+
+    // finally combine our output list into one string of HTML and put it on the page
+    quizContainer.innerHTML = output.join("");
+  }
+
+  function showResults() {
+    // gather answer containers from our quiz
+    const answerContainers = quizContainer.querySelectorAll(".answers");
+
+    // keep track of user's answers
+    let numCorrect = 0;
+
+    // for each question...
+    myQuestions.forEach((currentQuestion, questionNumber) => {
+      // find selected answer
+      const answerContainer = answerContainers[questionNumber];
+      const selector = `input[name=question${questionNumber}]:checked`;
+      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+      // if answer is correct
+      if (userAnswer === currentQuestion.correctAnswer) {
+        // add to the number of correct answers
+        numCorrect++;
+
+        // color the answers green
+        answerContainers[questionNumber].style.color = "lightgreen";
+      } else {
+        // if answer is wrong or blank
+        // color the answers red
+        answerContainers[questionNumber].style.color = "red";
+      }
+    });
+
+    // show number of correct answers out of total
+    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}. If you did not get all of the answers right, please, call the instructor. Otherwise, press "Start".`;
+  }
+
+  const quizContainer = document.getElementById("quiz");
+  const resultsContainer = document.getElementById("results");
+  const submitButton = document.getElementById("submit");
+  const myQuestions = [
+    {
+      question: "1. I must follow all the recommendations of the AI assistants.",
+      answers: {
+        a: "Yes",
+        b: "No",
+        
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "2. Schematically, for the extracurricular activity criteria the preferences are: Clubs related to science and health > Other clubs > No clubs.",
+      answers: {
+        a: "Yes",
+        b: "No",
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "3. The weighted average is the same as the ordinary average.",
+      answers: {
+        a: "Yes",
+        b: "No",
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "4. I must always reject candidates who never participated in any club, even if their weighted average is above 15.75.",
+      answers: {
+        a: "Yes",
+        b: "No",
+      },
+      correctAnswer: "b"
+    }
+  ];
+
+  // display quiz right away
+  buildQuiz();
+
+  // on submit, show results
+  submitButton.addEventListener("click", showResults);
+})();
+</script>
+
+<p class="sceditor-nlf" style="text-align:justify;"><br></p>
+
+<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
+        <colgroup>
+          <col width="*">
+          <col width="*">
+          <col width="*">
+        </colgroup>
+        <tbody>
+          <tr>
+            <td style="text-align: left"><input class="MyButton" type="button" value="Back" title="Previous Page" tabindex="200" onclick="window.location.href='instructions2.html'"></td></td>
+            <td style="text-align: center; font-size: 75%"></td>
+            <td style="text-align: right"><input class="MyButton" type="button" value="Start" id="Start" title="Next Page" tabindex="200" onclick="window.location.href='part1.html'" disabled="disabled"></td>
+          </tr>
+        </tbody>
+      </table>
+      <hr style="margin: 40px 0 10px 0">
+      <div class="s2t-footer">
+          <div class="s2t-progress" style="padding-top: 2px">
+            <div class="progressbar">
+            <div id="s2progressIndicator" class="progress" style="width: 100%">&nbsp;</div>
+            <div id="s2progressLabel" class="progresstext">100% of Instructions completed</div>
+          </div>
+        </div>
+        <div class="s2t-imprint"><font size="-2">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 and Paris-Saclay - 2019</font></div>
+      </div>
+    <div>
+      <input name="zomplete" value="yes" type="hidden">
+    </div>
+    <div>
+      <input name="page_form_width" type="hidden" value="933">
+    </div>
+  </body>
+</html>
