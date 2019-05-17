@@ -16,11 +16,11 @@ note: ENSURE that <script src="/js/osc.min.js"></script> is added to all html
 1. navigate to folder on computer
 2. run cmd, same as above
 
-## When runing the experiment
-sign consent form
-assign participant ID (make note)
-set delay = long/ short in `server.js`
-Press on F11 to enter full screen for experiment
+## When running the experiment
+- Sign consent form
+- Assign participant ID (make note)
+- Set delay = long/ short in `server.js`
+- Press on F11 to enter full screen for experiment
 
 ## Logging
 ## install pino
