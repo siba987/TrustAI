@@ -1,40 +1,28 @@
 # OSC message JS <> Python
 
 ## Install 
-
+### For Mac:
 Open one terminal window:
+1. navigate to folder on computer (ensure python installed)
+2. run: 
 - `npm install`
 - `node server.js` 
+3. Open browser, go to http://127.0.0.1:8888/ to start the experiment
 
-Open a second terminal window:
-- `python3 server.py` (by default listening on port 5005, sending on port 5006)
-
-Open brower, go to http://127.0.0.1:8888/ when pushing "click me" you should see some message in console (same values from python printout and console.log in the browser)
-
-## Edits
-
-- HTML: edit public/index.html
-- JS: 
-    - edit public/js/experiment.js (to get events and send data)
-    - edit server.js to make the bridge from the browser-side events to python
-- PYTHON:
-    - server.py to deal with data communication
-    - create your own python script that can be called in server.py
-
-------------------------------------
-### updated May 9
-1. navigate to folder on computer
-2. run: `node server.js` (browser -> server)
-3. go to "http:/127.0.0.1:8888"
-
-Add HTML files as needed, starting point as index.html (specified in code)
 note: ENSURE that <script src="/js/osc.min.js"></script> is added to all html
 
-## TODO
-write function loadData()
-modify two main js files (communication/ logging)
+### For Windows:
+* Ensure Python (v3.7.1) and node is installed on computer as described here: 
+1. navigate to folder on computer
+2. run cmd, same as above
 
-# Logging
+## When runing the experiment
+sign consent form
+assign participant ID (make note)
+set delay = long/ short in `server.js`
+Press on F11 to enter full screen for experiment
+
+## Logging
 ## install pino
 ### (on Terminal)
 node server.js | pino 
