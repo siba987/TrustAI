@@ -22,8 +22,7 @@ note: ENSURE that <script src="/js/osc.min.js"></script> is added to all html
 - Set delay = long/ short in `server.js`
 - Press on F11 to enter full screen for experiment
 
-## Logging
-## install pino
+## Logging {using pino}
 ### (on Terminal)
 node server.js | pino 
 ### (in script)
