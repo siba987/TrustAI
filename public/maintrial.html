@@ -318,7 +318,18 @@ window.onclick = function(event) {
   <form><input class="buttontable" type="button" value="Run the AI" id="ai" title="Run the AI" disabled="disabled">
     <p style="display:none" id="AIrec" style="border:3px; border-style:solid; border-color:#f4e289; padding: 1em;"> <b><var id="reco"></var></b> the candidate </p>
 </form>
+<br><br>
+    <!-- Slider -->
+<div id="trust"  style="display:none;">
+<font size="-1">Indicate your level of trust in this recommendation.<br>
+0 - no trust at all; 100 - complete trust.</font>
 
+<br>
+<br>
+<input id="slider1" type="text"
+       data-provide="slider"
+       ata-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+<!-- Slider End-->
 <!-- to disable the AI button unless the initial choice is made -->
 
 <script type="text/javascript">
@@ -336,14 +347,14 @@ function new_popup(){
 
 });*/
       
-      // Show the slider once Submit is clicked
+      /*// Show the slider once Submit is clicked
       function Show() {
         //$('#AI')
         document.getElementById('trust').style.display = "";
 
         var submitTime = Date.now();
         console.log("submit final decision Time: "+ submitTime);
-      }
+      }*/
 
 </script>
 
@@ -391,40 +402,32 @@ input.buttontable:disabled {
 <tbody><tr>
   <td style="text-align: left"></td>
   <td style="text-align: center; font-size: 75%">
-    <!-- Slider -->
-<div id="trust"  style="display:none;">
-<font size="-1">Indicate your level of trust in this recommendation.<br>
-0 - no trust at all; 100 - complete trust.</font>
 
-<br>
-
-<input id="slider1" type="text"
-       data-provide="slider"
-       ata-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
-<!-- Slider End-->
   </td>
- <td style="text-align: right"><input id="send" class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" ></td>
+ <td style="text-align: right"><input id="send" class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" disabled="disabled"></td>
   <!-- Next Button Style -->
 <form>
 <head>
 <style>
 input.MyButton {
-width: 80px;
-padding: 10px;
-cursor: pointer;
-font-weight: bold;
-font-size: 120%;
-background: #f4e289;
-color: #5273B9;
-border: 1px solid #f4e289;
-border-radius: 10px;
-}
-input.MyButton:hover {
-color: #ffff00;
-background: #000;
-border: 1px solid #fff;
-}
-input.MyButton:disabled {
+        width: 80px;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 130%;
+        background: #f4e289;
+        color: #5273B9;
+        border: 1px solid #f4e289;
+        border-radius: 10px;
+      }
+      
+      input.MyButton:hover {
+        color: #ffff00;
+        background: #000;
+        border: 1px solid #fff;
+      }
+      
+      input.MyButton:disabled {
         background: #F5F5F5;
         color : #C3C3C3;
         cursor:none;
@@ -442,7 +445,7 @@ input.MyButton:disabled {
 <div class="s2t-footer">
 
 </div>
-  <div class="s2t-imprint">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6</div>
+  <div class="s2t-imprint"><font size="-1">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 and Paris-Saclay - 2019</font></div>
 </div>
 
 </div>

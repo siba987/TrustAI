@@ -2,7 +2,6 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-		<script src="js/experiment.js"></script>
 		<title>AI Experiment</title>
 
 		<!-- STYLE SLIDER -->
@@ -16,9 +15,9 @@
 				cursor: pointer;
 				font-weight: bold;
 				font-size: 120%;
-				background: #9255b1;
+				background: #53d3bb;
 				color: #ffffff;
-				border: 1px solid #9255b1;
+				border: 1px solid #53d3bb;
 				border-radius: 10px;
 			}
 
@@ -58,7 +57,7 @@
 			
 			div.questionary { 
 				background-color: white; 
-				border: 1px solid ##9255b1; 
+				border: 1px solid #53d3bb; 
 				min-width: 320px; 
 				max-width: 780px; 
 				box-sizing: border-box; 
@@ -160,7 +159,7 @@
 			}
 
 			div.chapter h1 { 
-				background-color: #9255b1; 
+				background-color: #53d3bb; 
 				color: white; 
 				font-weight: bold; 
 				text-align: right; 
@@ -190,7 +189,7 @@
 			}
 			
 			.centerblock {
-				background-color: #9255b1;
+				background-color: #53d3bb;
 				padding-top: 2px;
 				padding-bottom: 2px;
 				font-size: 14px;
@@ -252,9 +251,9 @@
 				cursor: pointer;
 				font-weight: bold;
 				font-size: 120%;
-				background: #9255b1;
+				background: #53d3bb;
 				color: #ffffff;
-				border: 1px solid #9255b1;
+				border: 1px solid #53d3bb;
 				border-radius: 10px;
 			}
 
@@ -270,9 +269,9 @@
 				cursor: pointer;
 				font-weight: bold;
 				font-size: 130%;
-				background: #9255b1;
+				background: #53d3bb;
 				color: #ffffff;
-				border: 1px solid #9255b1;
+				border: 1px solid #53d3bb;
 				border-radius: 10px;
 			}
 			
@@ -300,16 +299,11 @@
 		</div>
 		<div class="questionary">
 			<div class="s2t-logo">
-				<img src="mavechem.png" alt="" class="s2-logo">
-			</div>
-			<div id="IT16_media" class="s2question spacing">
-				<div class="items spacing">
-					<h1><b></b></h1>
-				</div>
+				<img src="javephy.png" alt="" class="s2-logo">
 			</div>
 			<!-- THE UNI TITLE -->
 			<div class="centerblock">
-				<div class="square"><p>MAVE CHEM UNIVERSITY</p></div>
+				<div class="square"><p>JAVE PHY UNIVERSITY</p></div>
 			</div>
 			<div class="titleSpacing"></div>
 			<br>
@@ -333,12 +327,11 @@
 					</p>
 				</div>
 			</div>
-			<h2>Applicant: <var id="name"> </var>/15 </h2>
+			<br>
+			<br>
+			  <h2>Applicant: <var id="name"> </var>/15 </h2>
 
 			<div>
-			<br>
-			<br>
-
 			  <table id="infoTable" cellspacing=”10″ cellpadding=”10″ border = "1">
 			  	<colgroup>
 				    <col style="background-color:rgb(255, 60,0);">
@@ -347,9 +340,9 @@
 				</colgroup>
 			    <thead>
 			        <tr>
-			            <th>Chemistry </th>
-			            <th>Biology </th>
 			            <th>Physics </th>
+			            <th>Biology </th>
+			            <th>Chemistry </th>
 			            <th>Final Year </th>
 			            <th>Clubs </th>
 			          </tr>
@@ -357,6 +350,8 @@
 			    <tbody></tbody>
 			  </table>
 			</div>
+
+
 			<br>
 			<br>
 			<!-- The Main Part - Table -->
@@ -369,17 +364,17 @@
 				<tbody>
 					<tr>
 						<td style="text-align: center; font-size: 105%">
-							<p style="border:3px; border-style:solid; border-color: #9255b1; padding: 1em;"><b>Your Decision</b></p><br>
+							<p style="border:3px; border-style:solid; border-color:#53d3bb; padding: 1em;"><b>Your Decision</b></p><br>
 							<form action="#">
 								<p>
 								<label>
-								<input name="group1" type="radio"/>
+								<input name="group1" type="radio" value="Accept"/>
 								<span>Accept</span>
 								</label>
 								</p> <br>
 								<p>
 								<label>
-								<input name="group1" type="radio" />
+								<input name="group1" type="radio" value="Reject"/>
 								<span>Reject</span>
 								</label>
 								</p>
@@ -391,14 +386,25 @@
 						</td>
 						<td style="text-align: center"></td>
 						<td style="text-align: center; font-size: 105%">
-							<p style="border:3px; border-style:solid; border-color:#9255b1; padding: 1em;"><b>MaveAI Recommendation</b></p>
+							<p style="border:3px; border-style:solid; border-color:#53d3bb; padding: 1em;"><b>JaveAI Recommendation</b></p>
 							<br><br>
 							<form>
-								<input class="buttontable" type="button" value="Run the AI" id="ai" title="Run the AI" disabled="disabled" >
+								<input class="buttontable" type="button" value="Run the AI" id="ai" title="Run the AI" disabled="disabled">
 								<!-- AI Recommendation -->
-								<p style="display:none" id="AIrec" style="border:3px; border-style:solid; border-color:#9255b1; padding: 1em;"><b><var id="reco"></var> the candidate</b></p>
+								<p style="display:none" id="AIrec" style="border:3px; border-style:solid; border-color:#53d3bb; padding: 1em;"><b><var id="reco"></var> </b> the candidate</p>
 							</form>
 							<br><br>
+						    <!-- Slider -->
+						<div id="trust"  style="display:none;">
+						<font size="-1">Indicate your level of trust in this recommendation.<br>
+						0 - no trust at all; 100 - complete trust.</font>
+
+						<br>
+						<br>
+						<input id="slider1" type="text"
+						       data-provide="slider"
+						       ata-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+						<!-- Slider End-->
 							
 						</td>
 					</tr>
@@ -416,16 +422,16 @@
 					<tr>
 						<td style="text-align: left"></td>
 						<td style="text-align: center; font-size: 75%">
-							<div id="trust"  style="display:none;">
+							<!-- <div id="trust"  style="display:none;">
 								<font size="-1">Indicate your level of trust in this recommendation.<br>
 									0 - no trust at all; 100 - complete trust.
 								</font>
 								<br><br>
-								<input id="slider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
-							</div>
+								<input id="slider1" type="text" data-provide="slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+							</div> -->
 							<!-- Slider End-->
 						</td>
-						<td style="text-align: right"><input id="next" class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" disabled="disabled"></td>
+						<td style="text-align: right"><input id="send" class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" disabled="disabled"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -444,6 +450,8 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/css/bootstrap-slider.min.css">
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/bootstrap-slider.min.js"></script>
+		<script src="/js/osc.min.js"></script>
+		<script src="js/experiment.js"></script>
 		<script type="text/javascript" src="js/d3.v5.min.js"></script>
 		<script type="text/javascript">
 			// Get the modal
@@ -472,9 +480,9 @@
 			  }
 			}
 			
-			// Open Loading Screen for Some Time
+			/*// Open Loading Screen for Some Time
 			function new_popup(){
-				var popupwin = window.open('http://localhost:8000/loadingtranspl.html','anyname',);
+				var popupwin = window.open('http://localhost:8000/loadingentl.html');
 				setTimeout(function() { popupwin.close();}, 8000);
 			}
 			
@@ -500,9 +508,9 @@
 			});
 			
 			// To enable 'Next' once the slider is moved
-			$("#slider").on("slideStop", function() {
+			$("#slider1").on("slideStop", function() {
 				$(".MyButton").prop("disabled", null);
-			});
+			});*/
 		</script>
 	</body>
 </html>

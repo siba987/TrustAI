@@ -7,56 +7,15 @@ var osc_udp = require("osc");
 var _ = require('underscore');
 //var d3 = require('d3');
 var app = require('express')()
-/*var pino = require('express-pino-logger')()
-
-
-app.use(pino)
-
-app.get('/', function (req, res) {
-  req.log.info('something')
-  res.send('hello world')
-})
-
-app.listen(3000)*/
-
 const port = 8888;
+
 
 /* DEFINED AS GLOBAL TO SERVER */
 var data = require('./experiment.json')
 var trialsPerParticipant = _.groupBy(data, "Participant");
-
 // console.log(trialsPerParticipant[0])
+//var allParticipantIds = _.keys(data); 
 
-// csv("experiment_data.csv").then(function(data){
-//     console.log('here');
-//     console.log(data);
-//     ctx.trials = data;})
-
-// var app = express();
-// var ctx ={
-//     startTime:0,
-//     cpt:0,
-
-//     participantIndex:"Participant",
-//     //candidateID:"candID",
-//     blockIndex:"Block",
-//     trialIndex:"Trial",
-//     delayIndex:"D",
-//     laborIndex:"I",
-//     errorCount :0,
-//     loggedTrials: [["Participant","TrialID","Block","Trial","D","L","ErrorCount"]],
-
-// }
-
-
-// START SERVER on 8888 (server)
-// app.use(express.static('public'));
-// app.get('/',function(req, res) {
-//     res.sendFile(__dirname + '/index.html');
-//     res.send()
-// });
-
-//
 app.use(express.static('public'));
 //app.use(express.static(__dirname + '/public'));
 
@@ -68,35 +27,6 @@ app.get('/experiment.json', function(req, res) {
 app.get('/',function(req, res) {
     res.sendFile(__dirname + '/index.html');
     res.send()
-});
-/*app.get('/maintrial.html', function(req, res) {
-  res.sendFile(__dirname + '/maintrial.html');
-});
-
-app.get('/loadingsimplel.html', function(req, res) {
-  res.sendFile(__dirname + '/loadingsimplel.html');
-});
-app.get('/loadingtranspl.html', function(req, res) {
-  res.sendFile(__dirname + '/loadingtranspl.html');
-});
-app.get('/loadingentl.html', function(req, res) {
-  res.sendFile(__dirname + '/loadingentl.html');
-});*/
-
-app.get('/Instructions1.html', function(req, res){
-    res.sendFile(__dirname + '/Instructions1.html');
-});
-app.get('/Instructions2.html', function(req, res){
-    res.sendFile(__dirname + '/Instructions2.html');
-});
-app.get('/loadingsimplel.html', function(req, res) {
-  res.sendFile(__dirname + '/loadingsimplel.html');
-});
-app.get('/loadingtranspl.html', function(req, res) {
-  res.sendFile(__dirname + '/loadingtranspl.html');
-});
-app.get('/loadingentl.html', function(req, res) {
-  res.sendFile(__dirname + '/loadingentl.html');
 });
 
 app.listen(port, () => {
@@ -128,12 +58,13 @@ osc.open({ host: '127.0.0.1', port: 8080 }) // start a WebSocket server on port 
 // logging IN DICTIONARY
 
 var logger = {}; 
-//var idx = -1;
-var idx=-1;
+var idx = -1;
+var endCondition = 0;
+var trial = 0;
 var participant = "";
 var typeAI = '';
 var loadingScreenCondition = '';
-var delay = 3000; //chnage for long
+var delay = 3500; //chnage for long to 8000
 
 
 
@@ -151,31 +82,46 @@ osc.on('/init_experiment', message => {
   console.log(logger);
   
   // init trial, block
-  //startBlock = 0;
-  //startTrial = 0;
+  startBlock = 0;
+  startTrial = 0;
 
 //initial condition
-// for(var i=0; i<trialsPerParticipant[participant].length; i++){
-//     if (trialsPerParticipant[participant][i]['Participant'] == participant) {
-//       if (trialsPerParticipant[participant][i]["Block"] == startBlock) {
-//         if (trialsPerParticipant[participant][i]["Trial"] == startTrial) {
-//           idx = i - 1;
-//         }
-//       }
-//     }
-//   }
+/*for(var i=0; i<trialsPerParticipant[participant].length; i++){
+    if (trialsPerParticipant[participant][i]['Participant'] == participant) {
+      if (trialsPerParticipant[participant][i]["Block"] == startBlock) {
+        if (trialsPerParticipant[participant][i]["Trial"] == startTrial) {
+          idx = i;
+        }
+      }
+    }
+  }*/
 
-  idx = 0; // idx = candidate
+  idx = 0 ;  //idx = candidate-1
+  trial = trialsPerParticipant[participant][idx]["Trial"]; //trial = candidate
+  endCondition =0 ; //boolean to check condiiton finished
   loadingScreenCondition = trialsPerParticipant[participant][idx]["Info"];
-  typeAI = trialsPerParticipant[participant][idx]["Uni"];; 
-
+  typeAI = trialsPerParticipant[participant][idx]["Uni"]; 
+  
 });
 
 // send osc from browser to server, GETS PRINTED TO TERMINALdata[rowindex]['Candidate']
+osc.on('load_participants', message => {
+  var partID = "";
+  var allParticipantIds = _.keys(trialsPerParticipant); // [0,1,2,3,...,24]
+  console.log(allParticipantIds);
+      for(var i = 0; i < allParticipantIds.length; i++) { // or Object.keys(obj).length
+        if(!(allParticipantIds[i] == partID)) {
+           partID = i;
+           var loadpart = new OSC.Message("/loaded", partID);
+           osc.send(loadpart, {host:'127.0.0.1', port: 8080});
+           /*$("select#participantSel").append('<option value="' + participant + '">Participant '+ participant +'</option>');*/
+          }
+        }
+});
+
 
 osc.on('/request_data', message => {
-  //starting
-  //idx++;  
+   console.log("this is the trial: "+trial)
   var candidate = trialsPerParticipant[participant][idx]['Candidate'];
   var sub1 = trialsPerParticipant[participant][idx]['Sub 1'].toFixed(2);
   var sub2 = trialsPerParticipant[participant][idx]['Sub 2'].toFixed(2);
@@ -189,23 +135,35 @@ osc.on('/request_data', message => {
   osc.send(message3, { host: '127.0.0.1', port: 8080 });
 });
 
-// nextTrial()
+osc.on('/init_trial', message => {
+  console.log("in init_trial: "+message);
+  if (!(trialsPerParticipant[participant][idx]['Participant'] == participant)) {
+    console.log("Experiment is over, thank you!");
+   }
+
+   endCondition =0 ; //boolean to check condiiton finished
+  trial = trialsPerParticipant[participant][idx]["Trial"]; //trial = candidate
+  loadingScreenCondition = trialsPerParticipant[participant][idx]["Info"];
+  typeAI = trialsPerParticipant[participant][idx]["Uni"]; 
+});
+
 osc.on('/next_trial', message => {
-  idx++;
-  if (idx == 14  ){
-    //init conditions for next block
-    idx = 0;
+
+    //console.log("partic ID: "+trialsPerParticipant[participant][idx]['Participant'] +", participant: "+participant);
+    if ( (idx+1) %15 == 0){
+        //go to post task
+        endCondition =1;
+         //init conditions for next block
+    } 
     loadingScreenCondition = trialsPerParticipant[participant][idx]["Info"];
     typeAI = trialsPerParticipant[participant][idx]["Uni"];
-    console.log("load screen: "+loadingScreenCondition +", typeAI"+ typeAI);
+    trial = trialsPerParticipant[participant][idx]["Trial"]; 
 
-    //go to post-ques
-    
-  }
-  // console.log(trialsPerParticipant[participant][idx]['Candidate']);
-  // console.log("info: "+trialsPerParticipant[participant][idx]["Info"]+", cand :" +trialsPerParticipant[participant][idx]["Candidate"]);
-    var loadAI = new OSC.Message("/load_ai", typeAI, idx);
+    idx ++;
+    var loadAI = new OSC.Message("/load_ai", typeAI, endCondition);
     osc.send(loadAI, {host:'127.0.0.1', port: 8080});
+    console.log("idx: "+ idx+", typeAI"+ typeAI);
+    
 });
 
 
@@ -214,7 +172,7 @@ osc.on('/request_ai', message => {
   console.log(message)
 
   //console.log("par: "+partID + "trial: "+trial);
-  var msgAiRec = new OSC.Message("/ai_rec", trialsPerParticipant[participant][idx]["AI recommendation"], loadingScreenCondition);
+  var msgAiRec = new OSC.Message("/ai_rec", trialsPerParticipant[participant][idx]["AI recommendation"], loadingScreenCondition, delay);
   osc.send(msgAiRec, {host:'127.0.0.1', port: 8080});
   
 });

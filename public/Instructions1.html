@@ -1,217 +1,284 @@
-<html class=" csspointerevents pointerevents"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<title>AI Experiment</title>
-<!-- Stylesheet: Layout -->
-<link rel="stylesheet" type="text/css" href="instructionsstyle.css">
-<!-- JavaScript libraries -->
+<html class=" csspointerevents pointerevents">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<title>AI Experiment</title>
+		<!-- Stylesheet: Layout -->
+		<style type="text/css">
+			input.MyButton {
+				width: 80px;
+				padding: 10px;
+				cursor: pointer;
+				font-weight: bold;
+				font-size: 130%;
+				background: #5273b9;
+				color: #fff;
+				border: 1px solid #5273b9;
+				border-radius: 10px;
+			}
 
-<!-- Additional head -->
+			input.MyButton:hover {
+				color: #ffff00;
+				background: #000;
+				border: 1px solid #fff;
+			}
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style type="text/css">
-body { background-color: #EEEEEE; padding-bottom: 24px; line-height: 1.5em; padding: 10px; }
-div.s2t-logo img { max-width: 100%; box-sizing: border-box; }
-div.s2t-logo { text-align: center }
-div.s2t-logo img:first-child { margin-bottom: 30px; padding: 0 40px 10px 40px; }
-div.questionary { background-color: white; border: 1px solid #5273B9; min-width: 320px; max-width: 780px; box-sizing: border-box; padding: 20px; margin: 0 auto; }
-hr { height: 2px; background-color: transparent; border: 0 none; border-bottom: 2px solid #CCCCCC; margin: 40px 0 }
-a { text-decoration: none; }
-h1 { text-align: center; font-weight: normal; font-size: 24px }
-h2 { text-align: center; font-weight: normal; font-size: 18px }
+			body { 
+				background-color: #EEEEEE; 
+				padding-bottom: 24px; 
+				line-height: 1.5em; 
+				padding: 10px; 
+			}
+			
+			div.s2t-logo img { 
+				max-width: 100%; 
+				box-sizing: border-box; 
+			}
+			
+			div.s2t-logo { 
+				text-align: center 
+			}
+			
+			div.s2t-logo img:first-child { 
+				margin-bottom: 30px; 
+				padding: 0 40px 10px 40px; 
+			}
+			
+			div.questionary { 
+				background-color: white; 
+				border: 1px solid #5273B9; 
+				min-width: 320px; 
+				max-width: 780px; 
+				box-sizing: border-box; 
+				padding: 20px; 
+				margin: 0 auto; 
+			}
+			
+			hr { 
+				height: 2px; 
+				background-color: transparent; 
+				border: 0 none; 
+				border-bottom: 2px solid #CCCCCC; 
+				margin: 40px 0 
+			}
+			
+			a { 
+				text-decoration: none; 
+			}
+			
+			h1 { 
+				text-align: center; 
+				font-weight: normal; 
+				font-size: 24px 
+			}
+			
+			h2 { 
+				text-align: center; 
+				font-weight: normal; 
+				font-size: 18px 
+			}
 
-div.s2t-footer {
-	display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
-}
-div.s2t-progress {
-	width: 280px;
-	-webkit-box-flex: 1;
-	-moz-box-flex: 1;
-	-webkit-flex: 1 1 280px;
-	-ms-flex: 1 1 280px;
-	flex: 1 1 280px;
-	margin: 0 0 0 20px
-	-webkit-box-ordinal-group: 2;
-	-moz-box-ordinal-group: 2;
-	-ms-flex-order: 2;
-	-webkit-order: 2;
-	order: 2; 
-}
-div.s2t-imprint {
-	width: 520px;
-	-webkit-box-flex: 9;
-	-moz-box-flex: 9;
-	-webkit-flex: 9 1 520px;
-	-ms-flex: 9 1 520px;
-	flex: 9 1 520px;
-	max-width: 100%;
-	-webkit-box-ordinal-group: 1;
-	-moz-box-ordinal-group: 1;
-	-ms-flex-order: 1;
-	-webkit-order: 1;
-	order: 1;
-}
+			div.s2t-footer {
+			  display: -webkit-box; 
+			  display: -moz-box; 
+			  display: -ms-flexbox; 
+			  display: -webkit-flex; 
+			  display: flex;
+			}
 
-@media (max-width: 560px) {
-  div.s2t-footer { display: block; }
-  div.s2t-progress { margin: 0 0 16px 0; }
-  div.s2t-logo img:first-child { padding: 0 20px 10px 20px; }
-}
-@media (max-width: 480px) {
-  body { padding: 0; }
-  div.questionary { padding: 10px; }
-  div.s2t-logo img:first-child { padding: 0 0 10px 0; }
-}
+			div.s2t-progress {
+				width: 280px;
+				-webkit-box-flex: 1;
+				-moz-box-flex: 1;
+				-webkit-flex: 1 1 280px;
+				-ms-flex: 1 1 280px;
+				flex: 1 1 280px;
+				margin: 0 0 0 20px
+				-webkit-box-ordinal-group: 2;
+				-moz-box-ordinal-group: 2;
+				-ms-flex-order: 2;
+				-webkit-order: 2;
+				order: 2; 
+			}
 
-div.head.selscale { background-color: #BAD0FF; color: #000000 }
-div.head { background-color: transparent; color: #000000 }
-table.question td.anchor,
-div.question div.anchor,
-table.question th,
-table.question th.subheading { background-color: transparent; color: #000000 }
+			div.s2t-imprint {
+				width: 520px;
+				-webkit-box-flex: 9;
+				-moz-box-flex: 9;
+				-webkit-flex: 9 1 520px;
+				-ms-flex: 9 1 520px;
+				flex: 9 1 520px;
+				max-width: 100%;
+				-webkit-box-ordinal-group: 1;
+				-moz-box-ordinal-group: 1;
+				-ms-flex-order: 1;
+				-webkit-order: 1;
+				order: 1;
+			}
 
-div.chapter h1 { background-color: #5273B9; color: white; font-weight: bold; text-align: right; padding: 3px 16px 0 16px; font-size: 38px; line-height: 1em; margin-bottom: -0.16em }
-div.chapter > div { background-color: #BAD0FF; padding: 20px 16px 10px 16px }
-div.chapter > div > p:first-child { margin-top: 0 }
-div.chapter > div > p:last-child { margin-bottom: 0 }
+			@media (max-width: 560px) {
+				div.s2t-footer { 
+					display: block; 
+				}
+				
+				div.s2t-progress { 
+					margin: 0 0 16px 0; 
+				}
+				
+				div.s2t-logo img:first-child { 
+					padding: 0 20px 10px 20px;
+				}
+			}
+			
+			@media (max-width: 480px) {
+				body { 
+					padding: 0; 
+				}
+				
+				div.questionary { 
+					padding: 10px; 
+				}
+				
+				div.s2t-logo img:first-child { 
+					padding: 0 0 10px 0; 
+				}
+			}
+			
+			div.head.selscale { 
+				background-color: #BAD0FF; 
+				color: #000000;
+			}
+			
+			div.head { 
+				background-color: transparent; 
+				color: #000000; 
+			}
+			
+			table.question td.anchor, div.question div.anchor, table.question th, table.question th.subheading { 
+				background-color: transparent; 
+				color: #000000 
+			}
 
-</style>
-</head>
-<body>
-<style>
-body{
-    font-size: 14px;
-    font-family: sans-serif;
-    color: #333;
-}
-</style>
-	<!-- Copy Pasted from the original questionnaire -->
-<form action="index.php?i=RFWI5D2NVCSW&amp;rnd=LLBA" method="POST" accept-charset="UTF-8" autocomplete="off" id="questionnaireForm">
-<div class="invisible">
-	<input type="hidden" name="i" value="RFWI5D2NVCSW">
-	<input type="hidden" name="page" value="1">
-	<input type="hidden" name="l" value="fre">
-	<input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
-</div>
-<!-- . -->
-
-<div class="questionary">
-<div class="s2t-logo"><img src="isir.png" alt="" class="s2-logo"></div>
-
-
-<!-- begin page(395586-1) -->
-
-
-<!-- begin question(IT16) -->
-<div id="IT16_media" class="s2question spacing">
-<div class="items spacing">
-<h1><b>Admissions and AI Experiment</b></h1>
-
-</div>
-</div>
-<!-- end question(IT16) -->
-
-
-
-<!-- begin question(IT02) -->
-<div class="title">
-<p>Hello and welcome !</p>
-</div>
-<div class="titleSpacing"></div>
-<br>
-<div style="text-align:justify;">Thanks a bunch for participating in our experiment! It lasts approximately 30 minutes. Here are short instructions to make your experience smooth and without any misunderstandings. 
-<br> <br>
-Please, read the instructions carefully, you will be asked a couple of questions about them. <u>Phones, calculators, and interacting with other participants are not permitted.</u>
-<p class="sceditor-nlf" style="text-align:justify;"><br></p>
-<!-- end question(IT02) -->
-
-
-
-<!-- begin question(IT11) -->
-<div class="title">
-<p>Background Info</p>
-</div>
-<div class="titleSpacing"></div>
-<br>
-<div style="text-align:justify;">You have finally achieved your dream: you became a part of admissions committee of three Medical undergraduate programs in a country called Gondour. You are going to see 15 applicants of the first university, then 15 applicants of the second one, and lastly, 15 applicants of the third one. You are going to be presented with one candidate's profile at a time. Each university follows the same selection criteria.
-<br><br>
-All candidates you are going to review graduated from equally prestigious high schools, have indicated the university they had applied to as their first choice, and have equally sufficient financial and linguistic capabilities to follow your program. Thus, you are going to evaluate the applicants based on the 5 selection criteria presented below and <u>these criteria only</u>:
-<br><br>
-1) <b>Final Year</b> - the average of all grades received in the final year of high school;<br>
-2) <b>Chemistry</b> - the final grade for Chemistry class in the final year of high school;<br>
-3) <b>Biology</b> - the final grade for Biology class in the final year of high school;<br>
-4) <b>Physics</b> - the final grade for Physics class in the final year of high school;<br>
-5) <b>Extracurricular Activity</b> - a membership in a students' club. A students' club is an organization, where one can develop one's interpersonal skills and deepen one's knowledge about and passion for a certain domain.
-<br><br>
-<p class="sceditor-nlf" style="text-align:justify;"></p>
-<!-- end question(IT11) -->
-
-<div class="title">
-<p>Criteria Importance</p>
-</div>
-<div class="titleSpacing"></div>
-<br>
-<div style="text-align:justify;">In each trial, you will see a table with the criteria above, grades and club participation of an applicant. Not all criteria share the same level of importance, or in other words, the same weight. Each table's column is colored, and color corresponds to the level of importance: <font color="#FF3B00">red</font> - very important, <font color="#00B3FF">blue</font> - important, and <font color="#22E65C">green</font> - slightly important. Criteria that are in the columns of the same color have the same level of importance. See an example below:
-<br> <br>
-<div class="s2t-logo"><img src="inst.png" alt="" class="s2-logo"></div>
-
-In this example, Subject 1's grade is very important and Final Year's grade and Club are equally slightly important. Subject 2 and Subject 3's grades share the same importance. Each university establishes their own order of criteria importance, and you will be introduced to it later in the experiment.
-<p class="sceditor-nlf" style="text-align:justify;"><br></p>
-
-<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
-<colgroup>
-  <col width="*">
-  <col width="*">
-  <col width="*">
-</colgroup>
-<tbody><tr>
-  <td style="text-align: left"></td>
-  <td style="text-align: center; font-size: 75%"></td>
-  <td style="text-align: right"><form><input class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" onclick="window.location.href='instructions2.html'"></td></form>
-  <!-- Next Button Style -->
-<form>
-<head>
-<style>
-input.MyButton {
-width: 80px;
-padding: 10px;
-cursor: pointer;
-font-weight: bold;
-font-size: 130%;
-background: #5273b9;
-color: #fff;
-border: 1px solid #5273b9;
-border-radius: 10px;
-}
-input.MyButton:hover {
-color: #ffff00;
-background: #000;
-border: 1px solid #fff;
-}
-</style>
-</head>
-</form>
-</tr>
-</tbody></table>
-
-<hr style="margin: 40px 0 10px 0">
-
-<div class="s2t-footer">
-  <div class="s2t-progress" style="padding-top: 2px"><div class="progressbar">
-				<div id="s2progressIndicator" class="progress" style="width: 33%">&nbsp;</div>
-				<div id="s2progressLabel" class="progresstext">33% of Instructions completed</div>
+			div.chapter h1 { 
+				background-color: #f4e289; 
+				color: white; 
+				font-weight: bold; 
+				text-align: right; 
+				padding: 3px 16px 0 16px; 
+				font-size: 38px; 
+				line-height: 1em; 
+				margin-bottom: -0.16em; 
+			}
+			
+			div.chapter > div { 
+				background-color: #BAD0FF; 
+				padding: 20px 16px 10px 16px 
+			}
+			
+			div.chapter > div > p:first-child { 
+				margin-top: 0; 
+			}
+			
+			div.chapter > div > p:last-child { 
+				margin-bottom: 0; 
+			}
+			
+			body {
+				font-size: 14px;
+				font-family: sans-serif;
+				color: #333;
+			}
+			
+		</style>
+		<link rel="stylesheet" type="text/css" href="instructionsstyle.css">
+	</head>
+	<body>
+		<div class="invisible">
+			<input type="hidden" name="i" value="RFWI5D2NVCSW">
+			<input type="hidden" name="page" value="1">
+			<input type="hidden" name="l" value="fre">
+			<input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
+		</div>
+		<div class="questionary">
+			<div class="s2t-logo">
+				<img src="isir.png" alt="" class="s2-logo">
 			</div>
-</div>
-  <div class="s2t-imprint">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 - 2019</div>
-</div>
+			<div id="IT16_media" class="s2question spacing">
+				<div class="items spacing">
+					<h1><b>Admissions and AI Experiment</b></h1>
+				</div>
+			</div>
+			<!-- TEXT -->
+			<div class="title">
+				<p>Hello and welcome !</p>
+			</div>
+			<div class="titleSpacing"></div>
+				<br>
+				<div style="text-align:justify;">Thanks a bunch for participating in our experiment! It lasts approximately 30 minutes. Here are short instructions to make your experience smooth and without any misunderstandings. 
+					<br> <br>
+				Please, read the instructions carefully, you will be asked a couple of questions about them. <u>Phones, calculators, and interacting with other participants are not permitted.</u>
+				</div>
+			<p class="sceditor-nlf" style="text-align:justify;"><br></p>
 
-</div>
+			<div class="title">
+				<p>Background Info</p>
+			</div>
+			<div class="titleSpacing"></div>
+				<br>
+				<div style="text-align:justify;">You have finally achieved your dream: you became a part of admissions committee of three Medical undergraduate programs in a country called Gondour. You are going to see 15 applicants of the first university, then 15 applicants of the second one, and lastly, 15 applicants of the third one. You are going to be presented with one candidate's profile at a time. Each university follows the same selection criteria.
+					<br><br>
+				All candidates you are going to review graduated from equally prestigious high schools, have indicated the university they had applied to as their first choice, and have equally sufficient financial and linguistic capabilities to follow your program. Thus, you are going to evaluate the applicants based on the 5 selection criteria presented below and <u>these criteria only</u>:
+					<br><br>
+				1) <b>Final Year</b> - the average of all grades received in the final year of high school;<br>
+				2) <b>Chemistry</b> - the final grade for Chemistry class in the final year of high school;<br>
+				3) <b>Biology</b> - the final grade for Biology class in the final year of high school;<br>
+				4) <b>Physics</b> - the final grade for Physics class in the final year of high school;<br>
+				5) <b>Extracurricular Activity</b> - a membership in a students' club. A students' club is an organization, where one can develop one's interpersonal skills and deepen one's knowledge about and passion for a certain domain.
+					<br><br>
+				</div>
+				<p class="sceditor-nlf" style="text-align:justify;"></p>
+			<div class="title">
+				<p>Criteria Importance</p>
+			</div>
+			<div class="titleSpacing"></div>
+				<br>
+				<div style="text-align:justify;">In each trial, you will see a table with the criteria above, grades and club participation of an applicant. Not all criteria share the same level of importance, or in other words, the same weight. Each table's column is colored, and color corresponds to the level of importance: <font color="#FF3B00">red</font> - very important, <font color="#00B3FF">blue</font> - important, and <font color="#22E65C">green</font> - slightly important. Criteria that are in the columns of the same color have the same level of importance. See an example below:
+					<br> <br>
+					<div class="s2t-logo"><img src="inst.png" alt="" class="s2-logo"></div>
 
-<div>
-	<input name="zomplete" value="yes" type="hidden">
-</div>
+				In this example, Subject 1's grade is very important and Final Year's grade and Club are equally slightly important. Subject 2 and Subject 3's grades share the same importance. Each university establishes their own order of criteria importance, and you will be introduced to it later in the experiment.
+				</div>
+			<p class="sceditor-nlf" style="text-align:justify;"><br></p>
 
-
-
-</div><div><input name="page_form_width" type="hidden" value="933"></div></form></body></html>
+		<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
+				<colgroup>
+					<col width="*">
+					<col width="*">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td style="text-align: left"></td>
+						<td style="text-align: center; font-size: 75%"></td>
+ 						<td style="text-align: right"><input class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" onclick="window.location.href='instructions2.html'"></td>
+ 					</tr>
+				</tbody>
+			</table>
+			<hr style="margin: 40px 0 10px 0">
+			<div class="s2t-footer">
+  				<div class="s2t-progress" style="padding-top: 2px">
+  					<div class="progressbar">
+						<div id="s2progressIndicator" class="progress" style="width: 33%">&nbsp;</div>
+						<div id="s2progressLabel" class="progresstext">33% of Instructions completed</div>
+					</div>
+				</div>
+ 				<div class="s2t-imprint"><font size="-2">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 and Paris-Saclay - 2019</font></div>
+			</div>
+		<div>
+			<input name="zomplete" value="yes" type="hidden">
+		</div>
+		<div>
+			<input name="page_form_width" type="hidden" value="933">
+		</div>
+	</body>
+</html>

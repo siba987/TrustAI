@@ -1,11 +1,15 @@
 var osc = new OSC();
 osc.open({ host: '127.0.0.1', port: 8080 }); // connect by default to ws://localhost:8080
-     
+
+
+setTimeout(function () {
+  var reqmsg = new OSC.Message('/load_participants', 'start');
+  osc.send(reqmsg, { host: '127.0.0.1', port: 8080 });
+  }, 200);     
 
 $(document).ready(function(){
 
-	var participant = "";
-	var jqxhr = $.getJSON("experiment.json", function(data) {
+	/*var jqxhr = $.getJSON("experiment.json", function(data) {
 	  
       var allParticipantIds = _.keys(data); // [0,1,2,3,...,24]
       for(var i = 0; i < allParticipantIds.length; i++) { // or Object.keys(obj).length
@@ -14,9 +18,13 @@ $(document).ready(function(){
            $("select#participantSel").append('<option value="' + participant + '">Participant '+ participant +'</option>');
           }
         }
-	}).error(function() { alert("error"); })
-	console.log('json loaded');
+	}).error(function() { alert("error"); })*/
 
+  osc.on('loaded', message => {
+    var participant = message.args;
+    $("select#participantSel").append('<option value="' + participant + '">Participant '+ participant +'</option>');
+    console.log('parts loaded');
+});
 
  $('#start').click(function(event) {
     event.preventDefault();

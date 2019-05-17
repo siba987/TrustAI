@@ -1,216 +1,280 @@
-<html class=" csspointerevents pointerevents"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<title>AI Experiment</title>
-<!-- Stylesheet: Layout -->
-<link rel="stylesheet" type="text/css" href="instructionsstyle.css">
-<!-- JavaScript libraries -->
-<script type="text/javascript" src="../script/SoSciTools.min.js?i=1274a"></script>
-<script type="text/javascript" src="../script/SoSciEnhancedInputs.min.js?i=1216"></script>
-<script type="text/javascript" src="../script/CustomInputs.min.js?i=1266a"></script>
-<!-- Additional head -->
+<html class=" csspointerevents pointerevents">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<title>AI Experiment</title>
+		<!-- Stylesheet: Layout -->
+		<style type="text/css">
+			input.MyButton {
+				width: 80px;
+				padding: 10px;
+				cursor: pointer;
+				font-weight: bold;
+				font-size: 130%;
+				background: #5273b9;
+				color: #fff;
+				border: 1px solid #5273b9;
+				border-radius: 10px;
+			}
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style type="text/css">
-body { background-color: #EEEEEE; padding-bottom: 24px; line-height: 1.5em; padding: 10px; }
-div.s2t-logo img { max-width: 100%; box-sizing: border-box; }
-div.s2t-logo { text-align: center }
-div.s2t-logo img:first-child { margin-bottom: 30px; padding: 0 40px 10px 40px; }
-div.questionary { background-color: white; border: 1px solid #5273B9; min-width: 320px; max-width: 780px; box-sizing: border-box; padding: 20px; margin: 0 auto; }
-hr { height: 2px; background-color: transparent; border: 0 none; border-bottom: 2px solid #CCCCCC; margin: 40px 0 }
-a { text-decoration: none; }
-h1 { text-align: center; font-weight: normal; font-size: 24px }
-h2 { text-align: center; font-weight: normal; font-size: 18px }
+			input.MyButton:hover {
+				color: #ffff00;
+				background: #000;
+				border: 1px solid #fff;
+			}
 
-div.s2t-footer {
-	display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
-}
-div.s2t-progress {
-	width: 280px;
-	-webkit-box-flex: 1;
-	-moz-box-flex: 1;
-	-webkit-flex: 1 1 280px;
-	-ms-flex: 1 1 280px;
-	flex: 1 1 280px;
-	margin: 0 0 0 20px
-	-webkit-box-ordinal-group: 2;
-	-moz-box-ordinal-group: 2;
-	-ms-flex-order: 2;
-	-webkit-order: 2;
-	order: 2; 
-}
-div.s2t-imprint {
-	width: 520px;
-	-webkit-box-flex: 9;
-	-moz-box-flex: 9;
-	-webkit-flex: 9 1 520px;
-	-ms-flex: 9 1 520px;
-	flex: 9 1 520px;
-	max-width: 100%;
-	-webkit-box-ordinal-group: 1;
-	-moz-box-ordinal-group: 1;
-	-ms-flex-order: 1;
-	-webkit-order: 1;
-	order: 1;
-}
+			body { 
+				background-color: #EEEEEE; 
+				padding-bottom: 24px; 
+				line-height: 1.5em; 
+				padding: 10px; 
+			}
+			
+			div.s2t-logo img { 
+				max-width: 100%; 
+				box-sizing: border-box; 
+			}
+			
+			div.s2t-logo { 
+				text-align: center 
+			}
+			
+			div.s2t-logo img:first-child { 
+				margin-bottom: 30px; 
+				padding: 0 40px 10px 40px; 
+			}
+			
+			div.questionary { 
+				background-color: white; 
+				border: 1px solid #5273B9; 
+				min-width: 320px; 
+				max-width: 780px; 
+				box-sizing: border-box; 
+				padding: 20px; 
+				margin: 0 auto; 
+			}
+			
+			hr { 
+				height: 2px; 
+				background-color: transparent; 
+				border: 0 none; 
+				border-bottom: 2px solid #CCCCCC; 
+				margin: 40px 0 
+			}
+			
+			a { 
+				text-decoration: none; 
+			}
+			
+			h1 { 
+				text-align: center; 
+				font-weight: normal; 
+				font-size: 24px 
+			}
+			
+			h2 { 
+				text-align: center; 
+				font-weight: normal; 
+				font-size: 18px 
+			}
 
-@media (max-width: 560px) {
-  div.s2t-footer { display: block; }
-  div.s2t-progress { margin: 0 0 16px 0; }
-  div.s2t-logo img:first-child { padding: 0 20px 10px 20px; }
-}
-@media (max-width: 480px) {
-  body { padding: 0; }
-  div.questionary { padding: 10px; }
-  div.s2t-logo img:first-child { padding: 0 0 10px 0; }
-}
+			div.s2t-footer {
+			  display: -webkit-box; 
+			  display: -moz-box; 
+			  display: -ms-flexbox; 
+			  display: -webkit-flex; 
+			  display: flex;
+			}
 
-div.head.selscale { background-color: #BAD0FF; color: #000000 }
-div.head { background-color: transparent; color: #000000 }
-table.question td.anchor,
-div.question div.anchor,
-table.question th,
-table.question th.subheading { background-color: transparent; color: #000000 }
+			div.s2t-progress {
+				width: 280px;
+				-webkit-box-flex: 1;
+				-moz-box-flex: 1;
+				-webkit-flex: 1 1 280px;
+				-ms-flex: 1 1 280px;
+				flex: 1 1 280px;
+				margin: 0 0 0 20px
+				-webkit-box-ordinal-group: 2;
+				-moz-box-ordinal-group: 2;
+				-ms-flex-order: 2;
+				-webkit-order: 2;
+				order: 2; 
+			}
 
-div.chapter h1 { background-color: #5273B9; color: white; font-weight: bold; text-align: right; padding: 3px 16px 0 16px; font-size: 38px; line-height: 1em; margin-bottom: -0.16em }
-div.chapter > div { background-color: #BAD0FF; padding: 20px 16px 10px 16px }
-div.chapter > div > p:first-child { margin-top: 0 }
-div.chapter > div > p:last-child { margin-bottom: 0 }
+			div.s2t-imprint {
+				width: 520px;
+				-webkit-box-flex: 9;
+				-moz-box-flex: 9;
+				-webkit-flex: 9 1 520px;
+				-ms-flex: 9 1 520px;
+				flex: 9 1 520px;
+				max-width: 100%;
+				-webkit-box-ordinal-group: 1;
+				-moz-box-ordinal-group: 1;
+				-ms-flex-order: 1;
+				-webkit-order: 1;
+				order: 1;
+			}
 
-</style>
-</head>
-<body>
-<style>
-body{
-    font-size: 14px;
-    font-family: sans-serif;
-    color: #333;
-}
-</style>
-<form action="index.php?i=RFWI5D2NVCSW&amp;rnd=LLBA" method="POST" accept-charset="UTF-8" autocomplete="off" id="questionnaireForm">
-<div class="invisible">
-	<input type="hidden" name="i" value="RFWI5D2NVCSW">
-	<input type="hidden" name="page" value="1">
-	<input type="hidden" name="l" value="fre">
-	<input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
-</div>
-<div class="questionary">
-<div class="s2t-logo"><img src="isir.png" alt="" class="s2-logo"></div>
+			@media (max-width: 560px) {
+				div.s2t-footer { 
+					display: block; 
+				}
+				
+				div.s2t-progress { 
+					margin: 0 0 16px 0; 
+				}
+				
+				div.s2t-logo img:first-child { 
+					padding: 0 20px 10px 20px;
+				}
+			}
+			
+			@media (max-width: 480px) {
+				body { 
+					padding: 0; 
+				}
+				
+				div.questionary { 
+					padding: 10px; 
+				}
+				
+				div.s2t-logo img:first-child { 
+					padding: 0 0 10px 0; 
+				}
+			}
+			
+			div.head.selscale { 
+				background-color: #BAD0FF; 
+				color: #000000;
+			}
+			
+			div.head { 
+				background-color: transparent; 
+				color: #000000; 
+			}
+			
+			table.question td.anchor, div.question div.anchor, table.question th, table.question th.subheading { 
+				background-color: transparent; 
+				color: #000000 
+			}
 
-
-<!-- begin page(395586-1) -->
-
-
-<!-- begin question(IT16) -->
-<div id="IT16_media" class="s2question spacing">
-<div class="items spacing">
-<h1><b></b></h1>
-
-</div>
-</div>
-<!-- end question(IT16) -->
-
-
-
-<!-- begin question(IT02) -->
-<div class="title">
-<p>Selection Rule</p>
-</div>
-<div class="titleSpacing"></div>
-<br>
-<div style="text-align:justify;">In Gondour, the highest grade one can get in High School is 20 and the passing grade is 10. As for the clubs, an applicant can belong to no club, one club unrelated to health and sciences or one club related to health and sciences. Taking this criterion <b>alone</b>, you prefer students who participated in clubs related to health or sciences to students who participated in other clubs; you also prefer students who participated in other clubs to students who never participated in any clubs.  
-<br> <br>
-Ideally, you would prefer if applicants have the <b>weighted average</b><a href="#section1">[1]</a> of Biology, Chemistry, Physics, and Final Year grades of <b>at least 15.75</b>. However, if an applicant has participated in any club or club related to sciences or health, but has the <b>weighted average</b> below 15.5, <b>sometimes</b> this rule can be relaxed and the applicant can be accepted. Furthermore, if an applicant has participated in no clubs and has the <b>weighted average</b> above 15.5, <b>sometimes</b> the main rule can be disregarded and the applicant can be rejected.
-<br> <br>
-You do not have to memorize this information by heart. In each trial, you will be able access a short summary of grading system, color meanings, and selection rule by clicking on a question mark in the top right corner.
-<br> <br>
-<p id="section1"><font size="-1">[1] The weighted average is not the same as the ordinary arithmetic mean. In the ordinary arithmetic mean, the data points contributing equally to the final average. In the weighted average, some data points contribute <u>more than others, depending on their importance</u>.</font></p>
-
-<p class="sceditor-nlf" style="text-align:justify;"><br></p>
-<!-- end question(IT02) -->
-
-
-
-<!-- begin question(IT11) -->
-<div class="title">
-<p>Your AI Assistants</p>
-</div>
-<div class="titleSpacing"></div>
-<br>
-<div style="text-align:justify;">Since the three Medical programs receive over 15,000 applications each annually, some years ago the universities developed their own Artificial Intelligence admissions assistant. The AI assistants use machine learning to analyze students' academic results and motivation to make recommendation about whether to accept or to reject them. The AI assistants have been implemented in the same year for each university and have been trained on the data available from the previous years of their respective university. However, since any AI is only as good as the data and candidates changes from one year to another, it is possible these three AIs would not give correct recommendations all the time for this year's candidates.<br><br>
-<p class="sceditor-nlf" style="text-align:justify;"></p>
-<!-- end question(IT11) -->
-
-<div class="title">
-<p>Task</p>
-</div>
-<div class="titleSpacing"></div>
-<br>
-<div style="text-align:justify;">For each candidate separately, you will have to make your <u>initial decision</u> by clicking either 'Accept' or 'Reject'. You will then have to press <u>'Run the AI'</u>. After, the AI will give its recommendation. You are not obliged to follow its recommendation. You must indicate your level of trust in this recommendation on a slider with 0 (no trust at all) and 100 (total trust). Then, you will make your <u>final decision</u> by clicking on 'Accept' or 'Reject' again and press 'Submit'. Once the final decision is submitted, it cannot be changed. You do not have a precise number of applicants to accept.
-<br> <br>
-Think about your choices carefully, every of your decisions, favorable or not, will change the applicant’s life forever. Plus, your decisions affect the public image of the universities. You also want to be as accurate as possible: the members of the admissions committee who give too many wrong answers will be forever excluded.
-<p class="sceditor-nlf" style="text-align:justify;"><br></p>
-
-<div class="title">
-<p>Feedback</p>
-</div>
-<div class="titleSpacing"></div>
-<br>
-<div style="text-align:justify;">You will see feedback about your choices and AI recommendations and the correct decision that should have been made in the very end of the experiement. 
-<p class="sceditor-nlf" style="text-align:justify;"><br></p>
-
-<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
-<colgroup>
-  <col width="*">
-  <col width="*">
-  <col width="*">
-</colgroup>
-<tbody><tr>
-  <td style="text-align: left"><form><input class="MyButton" type="button" value="Back" title="Previous Page" tabindex="200" onclick="window.location.href='instructions1.html'"></td></form>
-  <td style="text-align: center; font-size: 75%"></td>
-  <td style="text-align: right"><form><input class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" onclick="window.location.href='quiz.html'"></td></form>
-  <!-- Button Style -->
-<form>
-<head>
-<style>
-input.MyButton {
-width: 80px;
-padding: 10px;
-cursor: pointer;
-font-weight: bold;
-font-size: 120%;
-background: #5273b9;
-color: #fff;
-border: 1px solid #5273b9;
-border-radius: 10px;
-}
-input.MyButton:hover {
-color: #ffff00;
-background: #000;
-border: 1px solid #fff;
-}
-</style>
-</head>
-</form>
-</tr>
-</tbody></table>
-
-<hr style="margin: 40px 0 10px 0">
-
-<div class="s2t-footer">
-  <div class="s2t-progress" style="padding-top: 2px"><div class="progressbar">
-				<div id="s2progressIndicator" class="progress" style="width: 66%">&nbsp;</div>
-				<div id="s2progressLabel" class="progresstext">66% of Instructions completed</div>
+			div.chapter h1 { 
+				background-color: #f4e289; 
+				color: white; 
+				font-weight: bold; 
+				text-align: right; 
+				padding: 3px 16px 0 16px; 
+				font-size: 38px; 
+				line-height: 1em; 
+				margin-bottom: -0.16em; 
+			}
+			
+			div.chapter > div { 
+				background-color: #BAD0FF; 
+				padding: 20px 16px 10px 16px 
+			}
+			
+			div.chapter > div > p:first-child { 
+				margin-top: 0; 
+			}
+			
+			div.chapter > div > p:last-child { 
+				margin-bottom: 0; 
+			}
+			
+			body {
+				font-size: 14px;
+				font-family: sans-serif;
+				color: #333;
+			}
+			
+		</style>
+		<link rel="stylesheet" type="text/css" href="instructionsstyle.css">
+	</head>
+	<body>
+		<div class="invisible">
+			<input type="hidden" name="i" value="RFWI5D2NVCSW">
+			<input type="hidden" name="page" value="1">
+			<input type="hidden" name="l" value="fre">
+			<input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
+		</div>
+		<div class="questionary">
+			<div class="s2t-logo">
+				<img src="isir.png" alt="" class="s2-logo">
 			</div>
-</div>
-  <div class="s2t-imprint">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 - 2019</div>
-</div>
-
-</div>
-
-<div>
-	<input name="zomplete" value="yes" type="hidden">
-</div>
-
-</div><div><input name="page_form_width" type="hidden" value="933"></div></form></body></html>
+			<!-- TEXT -->
+			<div class="title">
+				<p>Selection Rule</p>
+			</div>
+			<div class="titleSpacing"></div>
+				<br>
+				<div style="text-align:justify;">In Gondour, the highest grade one can get in High School is 20 and the passing grade is 10. As for the clubs, an applicant can belong to no club, one club unrelated to health and sciences or one club related to health and sciences. Taking this criterion <b>alone</b>, you prefer students who participated in clubs related to health or sciences to students who participated in other clubs; you also prefer students who participated in other clubs to students who never participated in any clubs.  
+					<br> <br>
+				Ideally, you would prefer if applicants have the <b>weighted average</b><a href="#section1">[1]</a> of Biology, Chemistry, Physics, and Final Year grades of <b>at least 15.75</b>. However, if an applicant has participated in any club or club related to sciences or health, but has the <b>weighted average</b> below 15.75, <b>sometimes</b> this rule can be relaxed and the applicant can be accepted. Furthermore, if an applicant has participated in no clubs and has the <b>weighted average</b> above 15.75, <b>sometimes</b> the main rule can be disregarded and the applicant can be rejected.
+					<br> <br>
+				No worries, you do not have to memorize this information by heart. In each trial, you will be able access a short summary of grading system, color meanings, and selection rule by clicking on a question mark in the top right corner.
+					<br> <br>
+					<p id="section1"><font size="-1">[1] The weighted average is not the same as the ordinary arithmetic mean. In the ordinary arithmetic mean, the data points contributing equally to the final average. In the weighted average, some data points contribute <u>more than others, depending on their importance</u>.</font>
+					</p>
+				</div>
+			<p class="sceditor-nlf" style="text-align:justify;"><br></p>
+			<div class="title">
+				<p>Your AI Assistants</p>
+			</div>
+			<div class="titleSpacing"></div>
+					<br>
+				<div style="text-align:justify;">Since the three Medical programs receive over 15,000 applications each annually, some years ago the universities developed their own Artificial Intelligence admissions assistant. The AI assistants use machine learning to analyze students' academic results and motivation to make recommendation about whether to accept or to reject them. The AI assistants have been implemented in the same year for each university and have been trained on the data available from the previous years of their respective university. However, since any AI is only as good as the data and candidates changes from one year to another, it is possible these three AIs would not give correct recommendations all the time for this year's candidates.<br><br>
+				</div>
+			<p class="sceditor-nlf" style="text-align:justify;"></p>
+			<div class="title">
+				<p>Task</p>
+			</div>
+			<div class="titleSpacing"></div>
+					<br>
+				<div style="text-align:justify;">For each candidate separately, you will have to make your <u>initial decision</u> by clicking either 'Accept' or 'Reject'. You will then have to press <u>'Run the AI'</u>. After, the AI will give its recommendation. You are not obliged to follow its recommendation. Then, you will make your <u>final decision</u> by clicking on 'Accept' or 'Reject' again (you are not obliged to change your decision) and press 'Submit'. Once the final decision is submitted, it cannot be changed. Lastly, you must indicate your <u>level of trust</u> in the AI's recommendation on a slider with 0 (no trust at all) and 100 (total trust). To move on, press 'Next'.
+						<br> <br>
+					<div class="s2t-logo"><img src="task.png" alt="" class="s2-logo"></div>
+				You do not have a precise number of applicants to accept. Think about your choices carefully, every of your decisions, favorable or not, will change the applicant’s life forever. Plus, your decisions affect the public image of the universities. You also want to be as accurate as possible: the members of the admissions committee who give too many wrong answers will be forever excluded.
+				</div>
+				<p class="sceditor-nlf" style="text-align:justify;"><br></p>
+			<div class="title">
+				<p>Feedback</p>
+			</div>
+			<div class="titleSpacing"></div>
+				<br>
+				<div style="text-align:justify;"> You will see feedback about your choices and AI recommendations and the correct decisions that should have been made in the very end of the experiment.
+				</div>
+			<p class="sceditor-nlf" style="text-align:justify;"><br></p>
+		<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
+				<colgroup>
+					<col width="*">
+					<col width="*">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td style="text-align: left"></td>
+						<td style="text-align: center; font-size: 75%"></td>
+ 						<td style="text-align: right"><input class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" onclick="window.location.href='quiz.html'"></td>
+ 					</tr>
+				</tbody>
+			</table>
+			<hr style="margin: 40px 0 10px 0">
+			<div class="s2t-footer">
+  				<div class="s2t-progress" style="padding-top: 2px">
+  					<div class="progressbar">
+						<div id="s2progressIndicator" class="progress" style="width: 66%">&nbsp;</div>
+						<div id="s2progressLabel" class="progresstext">66% of Instructions completed</div>
+					</div>
+				</div>
+ 				<div class="s2t-imprint"><font size="-2">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 and Paris-Saclay - 2019</font></div>
+			</div>
+		<div>
+			<input name="zomplete" value="yes" type="hidden">
+		</div>
+		<div>
+			<input name="page_form_width" type="hidden" value="933">
+		</div>
+	</body>
+</html>

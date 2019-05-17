@@ -1,176 +1,254 @@
-<html class=" csspointerevents pointerevents"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<title>AI Experiment</title>
-<!-- Stylesheet: Layout -->
-<script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
-  <script type="text/javascript" src="js/d3.v5.min.js"></script>
-<style type="text/css">
-body { background-color: #EEEEEE; padding-bottom: 24px; line-height: 1.5em; padding: 10px; }
-div.s2t-logo img { max-width: 100%; box-sizing: border-box; }
-div.s2t-logo { text-align: center }
-div.s2t-logo img:first-child { margin-bottom: 30px; padding: 0 40px 10px 40px; }
-div.questionary { background-color: white; border: 1px solid #f4e289; min-width: 320px; max-width: 780px; box-sizing: border-box; padding: 20px; margin: 0 auto; }
-hr { height: 2px; background-color: transparent; border: 0 none; border-bottom: 2px solid #CCCCCC; margin: 40px 0 }
-a { text-decoration: none; }
-h1 { text-align: center; font-weight: normal; font-size: 24px }
-h2 { text-align: center; font-weight: normal; font-size: 18px }
+<html class=" csspointerevents pointerevents">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>AI Experiment</title>
+ 
+    <!-- Style -->
+    <style type="text/css">
+        body { 
+        background-color: #EEEEEE; 
+        padding-bottom: 24px; 
+        line-height: 1.5em; 
+        padding: 10px; 
+      }
+      
+      div.s2t-logo img { 
+        max-width: 100%; 
+        box-sizing: border-box; 
+      }
+      
+      div.s2t-logo { 
+        text-align: center 
+      }
+      
+      div.s2t-logo img:first-child { 
+        margin-bottom: 30px; 
+        padding: 0 40px 10px 40px; 
+      }
+      
+      div.questionary { 
+        background-color: white; 
+        border: 1px solid #f4e289; 
+        min-width: 320px; 
+        max-width: 780px; 
+        box-sizing: border-box; 
+        padding: 20px; 
+        margin: 0 auto; 
+      }
+      
+      hr { 
+        height: 2px; 
+        background-color: transparent; 
+        border: 0 none; 
+        border-bottom: 2px solid #CCCCCC; 
+        margin: 40px 0 
+      }
+      
+      a { 
+        text-decoration: none; 
+      }
+      
+      h1 { 
+        text-align: center; 
+        font-weight: normal; 
+        font-size: 24px 
+      }
+      
+      h2 { 
+        text-align: center; 
+        font-weight: normal; 
+        font-size: 18px 
+      }
 
-div.s2t-footer {
-  display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
-  }
+      div.s2t-footer {
+        display: -webkit-box; 
+        display: -moz-box; 
+        display: -ms-flexbox; 
+        display: -webkit-flex; 
+        display: flex;
+      }
 
-}
-  div.s2t-imprint {
-  width: 520px;
-  -webkit-box-flex: 9;
-  -moz-box-flex: 9;
-  -webkit-flex: 9 1 520px;
-  -ms-flex: 9 1 520px;
-  flex: 9 1 520px;
-  max-width: 100%;
-  -webkit-box-ordinal-group: 1;
-  -moz-box-ordinal-group: 1;
-  -ms-flex-order: 1;
-  -webkit-order: 1;
-  order: 1;
-}
+      div.s2t-imprint {
+        width: 520px;
+        -webkit-box-flex: 9;
+        -moz-box-flex: 9;
+        -webkit-flex: 9 1 520px;
+        -ms-flex: 9 1 520px;
+        flex: 9 1 520px;
+        max-width: 100%;
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -ms-flex-order: 1;
+        -webkit-order: 1;
+        order: 1;
+      }
 
-@media (max-width: 560px) {
-  div.s2t-footer { display: block; }
-  div.s2t-progress { margin: 0 0 16px 0; }
-  div.s2t-logo img:first-child { padding: 0 20px 10px 20px;
-}
-}
-@media (max-width: 480px) {
-  body { padding: 0; }
-  div.questionary { padding: 10px; }
-  div.s2t-logo img:first-child { padding: 0 0 10px 0; }
-}
-    div.head.selscale { background-color: #BAD0FF; color: #000000 }
-div.head { background-color: transparent; color: #000000 }
-table.question td.anchor,
-div.question div.anchor,
-table.question th,
-table.question th.subheading { background-color: transparent; color: #000000 }
+      @media (max-width: 560px) {
+        div.s2t-footer { 
+          display: block; 
+        }
+        
+        div.s2t-progress { 
+          margin: 0 0 16px 0; 
+        }
+        
+        div.s2t-logo img:first-child { 
+          padding: 0 20px 10px 20px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        body { 
+          padding: 0; 
+        }
+        
+        div.questionary { 
+          padding: 10px; 
+        }
+        
+        div.s2t-logo img:first-child { 
+          padding: 0 0 10px 0; 
+        }
+      }
+      
+      div.head.selscale { 
+        background-color: #BAD0FF; 
+        color: #000000;
+      }
+      
+      div.head { 
+        background-color: transparent; 
+        color: #000000; 
+      }
+      
+      table.question td.anchor, div.question div.anchor, table.question th, table.question th.subheading { 
+        background-color: transparent; 
+        color: #000000 
+      }
 
-div.chapter h1 { background-color: #f4e289; color: white; font-weight: bold; text-align: right; padding: 3px 16px 0 16px; font-size: 38px; line-height: 1em; margin-bottom: -0.16em }
-div.chapter > div { background-color: #BAD0FF; padding: 20px 16px 10px 16px }
-div.chapter > div > p:first-child { margin-top: 0 }
-div.chapter > div > p:last-child { margin-bottom: 0 }
+      div.chapter h1 { 
+        background-color: #f4e289; 
+        color: white; 
+        font-weight: bold; 
+        text-align: right; 
+        padding: 3px 16px 0 16px; 
+        font-size: 38px; 
+        line-height: 1em; 
+        margin-bottom: -0.16em; 
+      }
+      
+      div.chapter > div { 
+        background-color: #BAD0FF; 
+        padding: 20px 16px 10px 16px 
+      }
+      
+      div.chapter > div > p:first-child { 
+        margin-top: 0; 
+      }
+      
+      div.chapter > div > p:last-child { 
+        margin-bottom: 0; 
+      }
+      
+      body {
+        font-size: 14px;
+        font-family: sans-serif;
+        color: #333;
+      }
+      
+      .centerblock {
+        background-color: #f4e289;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: sans-serif;
+        color: #5273B9; 
+        text-align:center;
+      }
+      
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
 
-</style>
-</head>
-<body>
-<style>
-body{
-    font-size: 14px;
-    font-family: sans-serif;
-    color: #333;
-}
-</style>
-  <div class="invisible">
-  <input type="hidden" name="i" value="RFWI5D2NVCSW">
-  <input type="hidden" name="page" value="1">
-  <input type="hidden" name="l" value="fre">
-  <input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
-</div>
-<div class="questionary">
-<div class="s2t-logo"><img src="davebio.png" alt="" class="s2-logo"></div>
-</style>
-
-
-<link rel="stylesheet" type="text/css" href="instructionsstyle.css">
-
-<div id="IT16_media" class="s2question spacing">
-<div class="items spacing">
-<h1><b></b></h1>
-
-</div>
-</div>
-<!-- end question(IT16) -->
-
-<div class="centerblock">
-    <div class="square"><p>DAVE BIO UNIVERSITY</p></div>
-</div>
-
-<style>
-  .centerblock{
-    background-color: #f4e289;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: sans-serif;
-    color: #5273B9; 
-    text-align:center;
-}
-</style>
-
-<!-- begin question(IT02) -->
-
-<div class="titleSpacing"></div>
-<br>
-<div style="text-align:justify;"> 
-  You are now going to review 15 candidates for Dave Bio University. This university takes pride for their strong Biology department of the Medical program; hence, Biology is the most important criteria for them.
-  <br> <br>
-  <div class="s2t-logo"><img src="bio.png" alt="" class="s2-logo"></div>
-  You will first have to make your <u>initial choice</u> by pressing "Accept" or "Reject". Then you will have to click on <u>"Run the AI"</u>. <b>DaveAI</b>, university's admissions AI assistant, will give you its recommendation. Indicate your level of <u>trust in its recommendation</u> on a slider (0 - no trust at all; 100 - total trust). You may change your <u>final decision</u> by clicking "Accept" or "Reject". <u>Press "Submit"</u> to confirm your final decision.
-<br> <br>
-   <b>DaveAI</b> was trained on the admissions and university students' data of Dave Bio University from the previous years. Remember that any AI is only as good as the data and that candidates change from one year to another. So, it is possible that <b>DaveAI</b> would not give correct recommendations all the time for the candidates of 2019.
-<br> <br>
-
-
-<p class="sceditor-nlf" style="text-align:justify;"><br></p>
-
-<table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
-<colgroup>
-  <col width="*">
-  <col width="*">
-  <col width="*">
-</colgroup>
-<tbody><tr>
-  <td style="text-align: left"></td>
-  <td style="text-align: center; font-size: 75%"></td>
- <td style="text-align: right"><form><input class="MyButton" type="button" value="Proceed" id="Proceed" title="Next Page" tabindex="200" onclick="window.location.href='pretask1.html'" ></td></form>
-  <!-- Next Button Style -->
-<form>
-<head>
-<style>
-input.MyButton {
-width: 80px;
-padding: 10px;
-cursor: pointer;
-font-weight: bold;
-font-size: 120%;
-background: #f4e289;
-color: #5273B9;
-border: 1px solid #f4e289;
-border-radius: 10px;
-}
-input.MyButton:hover {
-color: #ffff00;
-background: #000;
-border: 1px solid #fff;
-}
-</style>
-
-</head>
-</form>
-</tr>
-</tbody></table>
-
-<hr style="margin: 40px 0 10px 0">
-
-<div class="s2t-footer"> </div>
-  <div class="s2t-imprint">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6</div>
-</div>
-
-</div>
-
-<div>
-  <input name="zomplete" value="yes" type="hidden">
-</div>
-
-
-</div><div><input name="page_form_width" type="hidden" value="933"></div></form></body></html>
+      input.MyButton {
+        width: 80px;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 130%;
+        background: #f4e289;
+        color: #5273B9;
+        border: 1px solid #f4e289;
+        border-radius: 10px;
+      }
+      
+      input.MyButton:hover {
+        color: #ffff00;
+        background: #000;
+        border: 1px solid #fff;
+      }
+      
+      input.MyButton:disabled {
+        background: #F5F5F5;
+        color : #C3C3C3;
+        cursor:none;
+        pointer-events: none;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="instructionsstyle.css">
+  </head>
+  <body>
+    <div class="invisible">
+      <input type="hidden" name="i" value="RFWI5D2NVCSW">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="l" value="fre">
+      <input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
+    </div>
+    <div class="questionary">
+      <div class="s2t-logo">
+        <img src="davebio.png" alt="" class="s2-logo">
+      </div>
+      <!-- THE UNI TITLE -->
+      <div class="centerblock">
+        <div class="square"><p>DAVE BIO UNIVERSITY</p></div>
+      </div>
+      <div class="titleSpacing"></div>
+      <br>
+      <div style="text-align:justify;">
+        You are now going to review 15 candidates for Dave Bio University. This university takes pride for their strong Biology department of the Medical program; hence, Biology is the most important criteria for them.
+          <br> <br>
+              <div class="s2t-logo"><img src="bio.png" alt="" class="s2-logo"></div>
+        You will first have to make your <u>initial choice</u> by pressing "Accept" or "Reject". Then you will have to click on <u>"Run the AI"</u>. <b>DaveAI</b>, university's admissions AI assistant, will give you its recommendation. Then, you <u>can change</u> your initial decision by clicking on "Accept" or "Reject" again. <u>Press "Submit"</u> to confirm your final decision. Lastly, you must indicate your level of <u>trust in its recommendation</u> on a slider (0 - no trust at all; 100 - total trust).
+            <br> <br>
+        <b>DaveAI</b> was trained on the admissions and university students' data of Dave Bio University from the previous years. Remember that any AI is only as good as the data and that candidates change from one year to another. So, it is possible that <b>DaveAI</b> would not give correct recommendations all the time for the candidates of 2019.
+      </div> <br> <br>
+      <p class="sceditor-nlf" style="text-align:justify;"><br></p>
+      <table cellspacing="0" cellpadding="0" border="0" style="width: 100%; table-layout: fixed">
+        <colgroup>
+          <col width="*">
+          <col width="*">
+          <col width="*">
+        </colgroup>
+        <tbody>
+          <tr>
+            <td style="text-align: left"></td>
+            <td style="text-align: center; font-size: 75%"></td>
+            <td style="text-align: right"><input class="MyButton" type="button" value="Next" id="Proceed" title="Next Page" tabindex="200" onclick="window.location.href='pretask1.html'" ></td></form>
+            </tr>
+        </tbody>
+      </table>
+      <hr style="margin: 40px 0 10px 0">
+      <div class="s2t-footer"></div>
+        <div class="s2t-imprint"><font size="-1">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 and Paris-Saclay - 2019</font></div>
+      </div>
+    </div>
+    <div>
+      <input name="zomplete" value="yes" type="hidden">
+    </div>
+    <div>
+      <input name="page_form_width" type="hidden" value="933">
+    </div>
+  </body>
+</html>

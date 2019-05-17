@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+  <html>
+    <body>
+    <!-- Loading Bar Set-Up-->  
+    <div>
+      <div class="progress-bar-container">
+        <div class="progress-bar stripes animated reverse slower">
+      <span class="progress-bar-inner"></span>
+    </div></div>
+    <!-- Loading Message-->  
+    <div class="loader"><p>Loading, please wait<span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span></p></div>
+      <br><br>
+    <style type="text/css">
+      p {
+        text-align: center;
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 26px;
+        }
+    </style>
+    <!-- @keyframes is for moving dots -->
+    <style type="text/css">
+
+      @keyframes blink {50% { color: transparent }}
+      .loader__dot { animation: 1s blink infinite }
+      .loader__dot:nth-child(2) { animation-delay: 250ms }
+      .loader__dot:nth-child(3) { animation-delay: 500ms }
+
+      body, html {
+        height: 100%;
+        background: #EEEEEE;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center
+      }
+
+      @keyframes animate-stripes {
+        0% {
+        background-position: 0 0;
+        }
+
+        100% {
+        background-position: 60px 0;
+        }
+      }
+
+      @keyframes auto-progress {
+        0% {
+        width: 0%;
+        }
+
+        100% {
+        width: 100%;
+        }
+      }
+
+      .progress-bar {
+        background-color: #1a1a1a;
+        height: 45px;
+        width: 450px;
+        margin: 50px auto;
+        border-radius: 5px;
+        box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+      }
+
+      .stripes {
+          background-size: 30px 30px;
+          background-image: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, .15) 25%,
+              transparent 25%,
+              transparent 50%,
+              rgba(255, 255, 255, .15) 50%,
+              rgba(255, 255, 255, .15) 75%,
+              transparent 75%,
+              transparent
+          );
+      }
+
+      .stripes.animated {
+        animation: animate-stripes 0.6s linear infinite;
+      }
+
+      .stripes.animated.slower {
+        animation-duration: 1.25s;
+      }
+
+      .stripes.reverse {
+        animation-direction: reverse;
+      }
+
+      .progress-bar-inner {
+        display: block;
+        height: 45px;
+        width: 0%;
+        background-color: #5273B9;
+        border-radius: 3px;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+        position: relative;
+        animation: auto-progress 3.5s infinite linear;
+      }
+    </style>
+  </body>
+</html>

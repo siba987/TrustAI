@@ -44,6 +44,7 @@ var replaceTableLine = function(lineDataArray) {
 
 
 $(document).ready(function(){
+  var quesId = 0; // assign id to questionnaire
 
   $('#send').click(function(event) {
     //event.preventDefault();
@@ -58,52 +59,102 @@ $(document).ready(function(){
     /*// load the maintrial.html , Dave
       window.location.href="maintrial.html";*/
   });
+
+/*  $('#radioValidate').click(function(){
+      var allIsanswered = true;
+      
+      $('#quesTable tbody tr').each(function() {
+          if ($(this).find('td input[type="radio"]:checked').length == 0) {
+            allIsanswered = false;
+          }
+      });
+
+      if (!allIsanswered) {
+        alert('You have not answered all the questions');
+      } else {
+          var logArray = [];
+          $('#quesTable tbody tr').each(function(){
+              let question = $(this).find('td').first().text();
+              var answer = $(this).find('td input[type="radio"]:checked').first().val();
+              // suppose we have questionner id = 1 (we have to load data to detect which id 1 or 2)
+              /*var quesId = 11;
+              logArray.push(question + ', ' + answer + ', ' + quesId);
+              
+          });
+          quesId++;
+          console.log(logArray);
+          StartExp();
+        }
+        
+      });*/
 });
+
+/*osc.on('/post_task', message => {
+    // go to post task
+  var end = message.args[1]; //check if trials over
+  var ai = message.args[0];  
+
+if (end){
+  console.log("trial ended" + message.args);  
+  switch(ai){
+    case "davebio":
+      window.location.href="posttask1.html";
+      break;
+    case "mavechem":
+      window.location.href="posttask2.html";
+      break;
+    case "javephy":
+      window.location.href="posttask3.html";
+      break;
+    default:
+      alert("error loading screen");
+      break; 
+
+  }
+  var message = new OSC.Message('/init_trial', 'boo');
+  osc.send(message, { host: '127.0.0.1', port: 8080 });
+}
+
+}); */
 
 osc.on('/load_ai', message => {
    // added to load relevant page
   var ai = message.args[0];  
-  var end = message.args[1]; //check if trials over
-  console.log(ai);
-
+  var end = message.args[1];
 //var info = "Transparent"; UNCOMMENT THIS to test
   switch(ai){
     case "davebio":
-    //load simple screen
-      //new_popup();
-      if (end ==0){
+      if (end){
         console.log("first task has ended")
         window.location.href="posttask1.html";
       } else{
         console.log("still happening")
-
         window.location.href="maintrial.html"; }
       break;
-    case "javephy":
-    if (end ==0){
-      console.log("second task has ended")
+    case "mavechem":
+    if (end){
+      console.log("second task has ended") // this gets executed after one trial
       window.location.href="posttask2.html";
       } else{
-      window.location.href="trial2.html"; }
+        window.location.href="trial2.html"; }
       break;
-    case "mavechem":
-      if (end ==0){
-        window.location.href="posttask1.html";
+    case "javephy":
+      if (end){
+        window.location.href="posttask3.html";
       } else{
-      window.location.href="trial3.html"; }
+        window.location.href="trial3.html"; }
       break;
     default:
       alert("error loading screen");
       break;
   }
-    
+  //reset trial if ai =/= javephy
+  if (!(ai === "javephy")){
+    var message = new OSC.Message('/init_trial', 'finished ai', ai);
+    osc.send(message, { host: '127.0.0.1', port: 8080 });
+  }
 });
 
-osc.on('/post_task', message => {
-    // go to post task
-  
-    
-});
 
 osc.on('/data_requested', message => {
     // update the HTML TABLE
@@ -119,21 +170,22 @@ osc.on('/ai_rec', message => {
  var airec = message.args[0];  
   $("#reco").text(airec);
 
- var info = (message.args[1]); //TODO: error, change this
+ var info = message.args[1]; //TODO: error, change this
+ var delay = message.args[2];
  console.log(info);
   switch(info){
     case "Simple":
     //load simple screen
-      var popupwin = window.open('http://localhost:8888/loadingsimplel.html');
-      setTimeout(function() { popupwin.close();}, 3000);
+      var popupwin = window.open('http://localhost:8888/loadingsimple.html');
+      setTimeout(function() { popupwin.close();}, delay);
       break;
     case "Transparent":
-      var popupwin = window.open('http://localhost:8888/loadingtranspl.html');
-      setTimeout(function() { popupwin.close();}, 3000);
+      var popupwin = window.open('http://localhost:8888/loadingtransp.html');
+      setTimeout(function() { popupwin.close();}, delay);
       break;
     case "Entertaining":
-      var popupwin = window.open('http://localhost:8888/loadingentl.html');
-      setTimeout(function() { popupwin.close();}, 3000);
+      var popupwin = window.open('http://localhost:8888/loadingent.html');
+      setTimeout(function() { popupwin.close();}, delay);
       break;
     default:
       alert("error")
@@ -142,22 +194,6 @@ osc.on('/ai_rec', message => {
 //alert better effect in Safari
   //alert("AI recommends to "+airec + " the candidate");
 }); 
-
-    // send to the server the trust value 
-    
-    // send message saying increment trial counter 
-
-    // load the maintrial.html 
-
-//reset screen
-   /* if (i!=0) {  
-      $("#ai").toggle(); 
-      $("#AIrec").toggle();
-    }
-    $( 'input[name = "group1"]' ).prop( "checked", false );*/
-    
-//pass index to data (in server.js)
-  
 
 
 $("#ai").bind('click', function() {
@@ -177,6 +213,15 @@ $("#ai").bind('click', function() {
   $("#Submit").prop("disabled", false);
   
 });
+
+// Show the slider once Submit is clicked
+function Show() {
+        //$('#AI')
+    document.getElementById('trust').style.display = "";
+
+    var submitTime = Date.now();
+    console.log("submit final decision Time: "+ submitTime);
+}
 
 var showFeedback = function(){
   
@@ -232,10 +277,16 @@ $("input:radio").change(function ()
 });
 
 // To enable 'Next' once the slider is moved
-$("#slider").on("slideStop", function() {
+// To enable 'Next' once the slider is moved
+      $("#slider1").on("slideStop", function() {
+        $(".MyButton").prop("disabled", null);
+      });
+
+
+/*$("#slider1").on("slideStop", function() {
   $("#send").prop("disabled", null);
   console.log("slider val: "+ $('#slider1').val());
-});
+});*/
 
 // LOGGING
 
