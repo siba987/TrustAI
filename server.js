@@ -148,6 +148,7 @@ osc.on('/request_data', message => {
   typeAI = trialsPerParticipant[participant][idx]["Uni"]; 
 
   var key = 'Block'+ String(blockId);
+  console.log("this is the key: "+key)
 /*  logger['study'][key] = {'start_time': datetime,
                           'trial': trial, 
                           'University': typeAI, 
@@ -300,8 +301,7 @@ osc.on('/PreQuestionnaire1_done', message => {
   fs.writeFile(filename, json, function(err) {
     if (err) throw err;
     console.log('complete preques');
-    }
-);
+    });
   blockId = 1;
 });
 
@@ -316,22 +316,6 @@ osc.on('/PostQuestionnaire1', message => {
 });
 
 
-osc.on('/PostQuestionnaire2_done', message => {
-  currentdate = new Date(); 
-  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
-                  + currentdate.getHours() + "-"  
-                  + currentdate.getMinutes() + "-" 
-                  + currentdate.getSeconds();
-  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
-  var json = JSON.stringify(logger);
-  var fs = require('fs');
-  fs.writeFile(filename, json, function(err) {
-    if (err) throw err;
-    console.log('complete postques');
-    }
-);
-   blockId = 2;
-});
 
 // PreQuestionnaire2
 osc.on('/PreQuestionnaire2', message => {
@@ -355,8 +339,9 @@ osc.on('/PreQuestionnaire2_done', message => {
     console.log('complete preques');
     }
 );
-  blockId = 1;
+  blockId = 2;
 });
+
 
 osc.on('/PostQuestionnaire2', message => {
   // TOOD
@@ -366,6 +351,20 @@ osc.on('/PostQuestionnaire2', message => {
   let trust = message['args'][3];
   logger['study']['PostQuestionnaire2']['overall_trust']= trust;
   logger['study']['PostQuestionnaire2'].push([quesId, question, answer]);
+
+  /*currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete postques');
+    }
+);*/
 });
 
 
@@ -408,7 +407,7 @@ osc.on('/PreQuestionnaire3_done', message => {
     console.log('complete preques');
     }
 );
-  blockId = 1;
+  blockId = 3;
 });
 
 osc.on('/PostQuestionnaire3', message => {
@@ -467,111 +466,16 @@ osc.on('/surv_done', message => {
 });
 
 
-// Summary data
+/*// Summary data
 osc.on('/summary_data', message => {
   //check part
   console.log(participant);
-  var part_data = trialsPerParticipant[participant];
-  var your_decision = 'Accept';
- // var values = [candidate, biology, chemistry];
-  var message3 = new OSC.Message("/summarydata_requested", part_data, your_decision);
+  var part_ID = participant;
+  //var your_decision = 'Accept';
+  var message3 = new OSC.Message("/summarydata_requested", part_ID);
 
-  osc.send(message3, { host: '127.0.0.1', port: 8080 });
-
+    osc.send(message3, { host: '127.0.0.1', port: 8080 });
   
-/*  logger['study'][key] = {'start_time': datetime,
-                          'trial': trial, 
-                          'University': typeAI, 
-                          'loadingScreenCondition': loadingScreenCondition};
-*/
-  
-});
-
-// defining function for getting current time
-/*function getCurrentTime(callback) {
-    $.ajax({
-        // ...
-        success: callback
-    });
-}*/
-
-/*// Receiving OSC message and send it to browser
-udpPort.on("ready", function () {
-    var ipAddresses = ["127.0.0.1"]
-    console.log("Listening for OSC over UDP.");
-    ipAddresses.forEach(function (address) {
-        console.log(" Host:", address + ", Port:", udpPort.options.localPort);
-    });
-});
-
-
-
-udpPort.on("message", function (oscMessage) {
-    console.log(oscMessage);
-    var message = new OSC.Message(oscMessage.address, oscMessage['args'][0]['value']);
-    osc.send(message, { host: '127.0.0.1', port: 8080 });
 });*/
 
-
-// // send osc from browser to server, GETS PRINTED TO CONSOLE
-
-// osc.on('/require_data_for_part', message => {
-//   console.log(message);
-//   ctx.participantIndex = message['args'];
-//   var message2 = new OSC.Message("/partic_data", data[ctx.participantIndex]['Candidate'],data[ctx.participantIndex]['Biology'], data[ctx.participantIndex]['Chemistry'], data[ctx.participantIndex]['Physics'], data[ctx.participantIndex]['Final Year'], data[ctx.participantIndex]['Clubs']);
-//   osc.send(message2, { host: '127.0.0.1', port: 8080 });
-// });
-  
-// osc.on('/set_current_part', message => {
-//   ctx.participantIndex = message['args'];
-//   //osc.send(message2, { host: '127.0.0.1', port: 8080 });
-  
-//   var msg = {
-//         address: message['address'], // "/data",
-//         args: message['args']
-//     };
-//     udpPort.send(msg);
-//   var msg = {
-//         address: message['address'], // "/data",
-//         args: [
-//             {
-//                 type: "f",
-//                 value: message['args']
-//             },
-//             {
-//                 type: "f",
-//                 value: message['args']
-//             }
-//         ]
-//     };
-//     udpPort.send(msg);
-// });
-
-// // send osc from browser to python
-// osc.on('/reqAI', message => {
-//   console.log(message)
-//   var msg = {
-//         address: message['address'], // "/data",
-//         args: message['args']
-//     };
-//     udpPort.send(msg);
-// })
-
-
-// // Receiving OSC message and send it to browser
-// udpPort.on("ready", function () {
-//     var ipAddresses = ["127.0.0.1"]
-//     console.log("Listening for OSC over UDP.");
-//     ipAddresses.forEach(function (address) {
-//         console.log(" Host:", address + ", Port:", udpPort.options.localPort);
-//     });
-// });
-
-
-
-// udpPort.on("message", function (oscMessage) {
-//     console.log(oscMessage);
-//     var message = new OSC.Message(oscMessage.address, oscMessage['args'][0]['value']);
-//     osc.send(message, { host: '127.0.0.1', port: 8080 });
-// });
 
