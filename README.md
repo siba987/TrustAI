@@ -12,7 +12,7 @@ Open one terminal window:
 note: ENSURE that <script src="/js/osc.min.js"></script> is added to all html
 
 ### For Windows:
-* Ensure Python (v3.7.1) and node is installed on computer as described here: 
+* Ensure Python (v3.7.1) and node is installed on computer as described here: https://blog.teamtreehouse.com/install-node-js-npm-windows
 1. navigate to folder on computer
 2. run cmd, same as above
 
@@ -22,25 +22,11 @@ note: ENSURE that <script src="/js/osc.min.js"></script> is added to all html
 - Set delay = long/ short in `server.js`
 - Press on F11 to enter full screen for experiment
 
-## Logging {using pino}
-### (on Terminal)
-node server.js | pino 
-### (in script)
-const app = require('express')()
-const pino = require('express-pino-logger')()
+ 
+### Logging
+Gets saved to folder outputs/
 
-app.use(pino)
 
-app.get('/', function (req, res) {
-req.log.info('expAI')
-res.send('hello world')
-})
-app.listen(3000)
-
-document.getElementById('inputradio').addEventListener('click', () => {
-var message = new OSC.Message('/inputradio', status);
-osc.send(message, { host: '127.0.0.1', port: 8080 });
-});
 
  
 
