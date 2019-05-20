@@ -58,11 +58,18 @@ osc.open({ host: '127.0.0.1', port: 8080 }) // start a WebSocket server on port 
 // logging IN DICTIONARY
 
 var logger = {}; 
+/*var logger_block1 = {};
+var logger_block2 = {};
+var logger_block3 = {};*/
+var arrayRadioButtonBlocks = [];
+var key = '';
+var blockId = 0;
 var idx = -1;
 var endCondition = 0;
 var trial = 0;
 var participant = "";
 var typeAI = '';
+var trust = 0;
 var loadingScreenCondition = '';
 var delay = 3500; //chnage for long to 8000
 
@@ -82,25 +89,27 @@ osc.on('/init_experiment', message => {
   console.log(logger);
   
   // init trial, block
-  startBlock = 0;
-  startTrial = 0;
-
-//initial condition
-/*for(var i=0; i<trialsPerParticipant[participant].length; i++){
-    if (trialsPerParticipant[participant][i]['Participant'] == participant) {
-      if (trialsPerParticipant[participant][i]["Block"] == startBlock) {
-        if (trialsPerParticipant[participant][i]["Trial"] == startTrial) {
-          idx = i;
-        }
-      }
-    }
-  }*/
-
+ /* startBlock = 0;
+  startTrial = 0;*/
   idx = 0 ;  //idx = candidate-1
+
   trial = trialsPerParticipant[participant][idx]["Trial"]; //trial = candidate
-  endCondition =0 ; //boolean to check condiiton finished
+  endCondition = 0 ; //boolean to check condiiton finished
   loadingScreenCondition = trialsPerParticipant[participant][idx]["Info"];
   typeAI = trialsPerParticipant[participant][idx]["Uni"]; 
+
+  logger['study'] = {
+    'PreQuestionnaire1' : [],
+    'Block1' : { }, // try as array
+    'PostQuestionnaire1' : [],
+    'PreQuestionnaire2' : [],
+    'Block2' : {},
+    'PostQuestionnaire2' : [],
+    'PreQuestionnaire3' : [],
+    'Block3' : {},
+    'PostQuestionnaire3' : [],
+    'Survey' : [] // or  {}
+  }
   
 });
 
@@ -121,7 +130,7 @@ osc.on('load_participants', message => {
 
 
 osc.on('/request_data', message => {
-   console.log("this is the trial: "+trial)
+  
   var candidate = trialsPerParticipant[participant][idx]['Candidate'];
   var sub1 = trialsPerParticipant[participant][idx]['Sub 1'].toFixed(2);
   var sub2 = trialsPerParticipant[participant][idx]['Sub 2'].toFixed(2);
@@ -133,50 +142,358 @@ osc.on('/request_data', message => {
   var message3 = new OSC.Message("/data_requested", candidate, sub1, sub2, sub3, final, clubs, loadingScreenCondition, typeAI);
 
   osc.send(message3, { host: '127.0.0.1', port: 8080 });
+
+  trial = trialsPerParticipant[participant][idx]["Trial"]; //trial = candidate
+  loadingScreenCondition = trialsPerParticipant[participant][idx]["Info"];
+  typeAI = trialsPerParticipant[participant][idx]["Uni"]; 
+
+  var key = 'Block'+ String(blockId);
+/*  logger['study'][key] = {'start_time': datetime,
+                          'trial': trial, 
+                          'University': typeAI, 
+                          'loadingScreenCondition': loadingScreenCondition};
+*/
+  arrayRadioButtonBlocks = [];
+  
 });
 
-osc.on('/init_trial', message => {
-  console.log("in init_trial: "+message);
+osc.on('/init_block', message => {
+  //console.log("in init_trial: "+message);
+  
   if (!(trialsPerParticipant[participant][idx]['Participant'] == participant)) {
     console.log("Experiment is over, thank you!");
    }
 
-   endCondition =0 ; //boolean to check condiiton finished
+  endCondition = 0 ; //boolean to check condiiton finished
+  arrayRadioButtonBlocks = [];
   trial = trialsPerParticipant[participant][idx]["Trial"]; //trial = candidate
   loadingScreenCondition = trialsPerParticipant[participant][idx]["Info"];
   typeAI = trialsPerParticipant[participant][idx]["Uni"]; 
+  
 });
 
 osc.on('/next_trial', message => {
 
-    //console.log("partic ID: "+trialsPerParticipant[participant][idx]['Participant'] +", participant: "+participant);
-    if ( (idx+1) %15 == 0){
-        //go to post task
-        endCondition =1;
-         //init conditions for next block
-    } 
-    loadingScreenCondition = trialsPerParticipant[participant][idx]["Info"];
+   loadingScreenCondition = trialsPerParticipant[participant][idx]["Info"];
     typeAI = trialsPerParticipant[participant][idx]["Uni"];
     trial = trialsPerParticipant[participant][idx]["Trial"]; 
+    candidate = trialsPerParticipant[participant][idx]['Candidate'];
+    //logging submit time
+    currentdate = new Date(); 
+    datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
 
-    idx ++;
+   // idx ++;
     var loadAI = new OSC.Message("/load_ai", typeAI, endCondition);
     osc.send(loadAI, {host:'127.0.0.1', port: 8080});
-    console.log("idx: "+ idx+", typeAI"+ typeAI);
+
+    var key = 'Block'+ String(blockId);
+    var trialKey = 'trial' + String(candidate);
+    logger['study'][key][trialKey] = {'start_time': datetime,
+                                    'Candidate': candidate, 
+                                    'University': typeAI, 
+                                    'loadingScreenCondition': loadingScreenCondition,
+                                    'decisions': arrayRadioButtonBlocks,
+                                    //'submit_time': submitDecision,
+                                    'trust': message['args'][0]};
+
+    if ( (idx+1) % 15 == 0){
+        //go to post task
+        endCondition = 1;
+        var loadAI = new OSC.Message("/load_ai", typeAI, endCondition);
+        osc.send(loadAI, {host:'127.0.0.1', port: 8080});
     
+        logger['study'][key][trialKey] = {'start_time': datetime,
+                                    'Candidate': candidate, 
+                                    'University': typeAI, 
+                                    'loadingScreenCondition': loadingScreenCondition,
+                                    'decisions': arrayRadioButtonBlocks,
+                                 //   'submit_time': submitDecision,
+                                    'trust': message['args'][0]};
+
+         //save file
+          currentdate = new Date(); 
+          var datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+          var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+          var json = JSON.stringify(logger);
+          var fs = require('fs');
+          fs.writeFile(filename, json, 'utf8',function(err) {
+              if (err) throw err;
+              console.log('complete block'+ blockId);
+            }
+          );
+          
+        //blockId++;
+    } 
+  // increment idx
+  idx ++;
+  arrayRadioButtonBlocks = [];
+   
 });
 
 
 // check if value entered is correct, TODO
 osc.on('/request_ai', message => {
-  console.log(message)
+  //console.log(message)
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
 
   //console.log("par: "+partID + "trial: "+trial);
   var msgAiRec = new OSC.Message("/ai_rec", trialsPerParticipant[participant][idx]["AI recommendation"], loadingScreenCondition, delay);
   osc.send(msgAiRec, {host:'127.0.0.1', port: 8080});
+
+  arrayRadioButtonBlocks.push(['ai', trialsPerParticipant[participant][idx]["AI recommendation"], datetime]);
+  console.log(arrayRadioButtonBlocks)
   
 });
 
+// user's radio input
+osc.on('/inputradio', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  //logger['radio_time'] = datetime;
+  //logger['Your Decision'] = message.args;
+  arrayRadioButtonBlocks.push(['user', message.args[0], datetime]);
+  console.log(arrayRadioButtonBlocks); //prints the history, appended
+
+});
+
+osc.on('/submit_decision', message=> {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  
+  arrayRadioButtonBlocks.push(['submit_decision', datetime]);
+  console.log(arrayRadioButtonBlocks); 
+});
+
+// PreQuestionnaire1
+osc.on('/PreQuestionnaire1', message => {
+  let question = message['args'][0];
+  let answer = message['args'][1];
+  let quesId = message['args'][2];
+  logger['study']['PreQuestionnaire1'].push([quesId, question, answer]);
+});
+
+osc.on('/PreQuestionnaire1_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete preques');
+    }
+);
+  blockId = 1;
+});
+
+osc.on('/PostQuestionnaire1', message => {
+  // TOOD
+  let quesId = message['args'][0];
+  let question = message['args'][1];
+  let answer = message['args'][2];
+  let trust = message['args'][3];
+  logger['study']['PostQuestionnaire1']['overall_trust']= trust;
+  logger['study']['PostQuestionnaire1'].push([quesId, question, answer]);
+});
+
+
+osc.on('/PostQuestionnaire2_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete postques');
+    }
+);
+   blockId = 2;
+});
+
+// PreQuestionnaire2
+osc.on('/PreQuestionnaire2', message => {
+  let question = message['args'][0];
+  let answer = message['args'][1];
+  let quesId = message['args'][2];
+  logger['study']['PreQuestionnaire2'].push([quesId, question, answer]);
+});
+
+osc.on('/PreQuestionnaire2_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete preques');
+    }
+);
+  blockId = 1;
+});
+
+osc.on('/PostQuestionnaire2', message => {
+  // TOOD
+  let quesId = message['args'][0];
+  let question = message['args'][1];
+  let answer = message['args'][2];
+  let trust = message['args'][3];
+  logger['study']['PostQuestionnaire2']['overall_trust']= trust;
+  logger['study']['PostQuestionnaire2'].push([quesId, question, answer]);
+});
+
+
+osc.on('/PostQuestionnaire2_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete postques');
+    }
+);
+   blockId = 3;
+});
+
+// PreQuestionnaire3
+osc.on('/PreQuestionnaire3', message => {
+  let question = message['args'][0];
+  let answer = message['args'][1];
+  let quesId = message['args'][2];
+  logger['study']['PreQuestionnaire3'].push([quesId, question, answer]);
+});
+
+osc.on('/PreQuestionnaire3_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete preques');
+    }
+);
+  blockId = 1;
+});
+
+osc.on('/PostQuestionnaire3', message => {
+  // TOOD
+  let quesId = message['args'][0];
+  let question = message['args'][1];
+  let answer = message['args'][2];
+  let trust = message['args'][3];
+  logger['study']['PostQuestionnaire3']['overall_trust']= trust;
+  logger['study']['PostQuestionnaire3'].push([quesId, question, answer]);
+  
+});
+
+
+osc.on('/PostQuestionnaire3_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete postques3, go to feedback');
+    }
+);
+   //blockId = 0;
+});
+
+osc.on('/survey', message => {
+  var logArray = [];
+  let Q_id = message['args'][0];
+  let ans = message['args'][1];
+  /*logger['study']['Survey'] =   {   'gender': gender, 
+                                    'study' : study,
+                                    "Q&A": logArray };*/
+  logger['study']['Survey'].push([Q_id, ans]);
+});
+
+osc.on('/surv_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete survey');
+    }
+  );
+});
+
+
+// Summary data
+osc.on('/summary_data', message => {
+  //check part
+  console.log(participant);
+  var part_data = trialsPerParticipant[participant];
+  var your_decision = 'Accept';
+ // var values = [candidate, biology, chemistry];
+  var message3 = new OSC.Message("/summarydata_requested", part_data, your_decision);
+
+  osc.send(message3, { host: '127.0.0.1', port: 8080 });
+
+  
+/*  logger['study'][key] = {'start_time': datetime,
+                          'trial': trial, 
+                          'University': typeAI, 
+                          'loadingScreenCondition': loadingScreenCondition};
+*/
+  
+});
+
+// defining function for getting current time
+/*function getCurrentTime(callback) {
+    $.ajax({
+        // ...
+        success: callback
+    });
+}*/
 
 /*// Receiving OSC message and send it to browser
 udpPort.on("ready", function () {

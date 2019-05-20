@@ -60,6 +60,30 @@ $(document).ready(function(){
       window.location.href="maintrial.html";*/
   });
 
+  $("#ai").bind('click', function() {
+
+    var AIrun = Date.now(); 
+    console.log("Run AI @ Time: "+ AIrun);
+    var message = new OSC.Message('/request_ai', AIrun);
+      // send message
+    osc.send(message, { host: '127.0.0.1', port: 8080 });
+
+    
+    $(this).toggle();
+
+    $("#AIrec").show();
+    $("#Submit").prop("disabled", false);
+    
+  });
+
+  $('#Submit').click(function(event){
+
+    var message = new OSC.Message('/submit_decision', 'submit');
+    // send message
+    osc.send(message, { host: '127.0.0.1', port: 8080 });
+    
+  });
+
 /*  $('#radioValidate').click(function(){
       var allIsanswered = true;
       
@@ -88,34 +112,6 @@ $(document).ready(function(){
         
       });*/
 });
-
-/*osc.on('/post_task', message => {
-    // go to post task
-  var end = message.args[1]; //check if trials over
-  var ai = message.args[0];  
-
-if (end){
-  console.log("trial ended" + message.args);  
-  switch(ai){
-    case "davebio":
-      window.location.href="posttask1.html";
-      break;
-    case "mavechem":
-      window.location.href="posttask2.html";
-      break;
-    case "javephy":
-      window.location.href="posttask3.html";
-      break;
-    default:
-      alert("error loading screen");
-      break; 
-
-  }
-  var message = new OSC.Message('/init_trial', 'boo');
-  osc.send(message, { host: '127.0.0.1', port: 8080 });
-}
-
-}); */
 
 osc.on('/load_ai', message => {
    // added to load relevant page
@@ -150,7 +146,7 @@ osc.on('/load_ai', message => {
   }
   //reset trial if ai =/= javephy
   if (!(ai === "javephy")){
-    var message = new OSC.Message('/init_trial', 'finished ai', ai);
+    var message = new OSC.Message('/init_block', 'finished ai', ai);
     osc.send(message, { host: '127.0.0.1', port: 8080 });
   }
 });
@@ -195,24 +191,6 @@ osc.on('/ai_rec', message => {
   //alert("AI recommends to "+airec + " the candidate");
 }); 
 
-
-$("#ai").bind('click', function() {
-
-    // create message - send user input
-   // var selection = document.querySelector('input[name = "group1"]:checked').value; 
-    var AIrun = Date.now(); 
-    console.log("Run AI @ Time: "+ AIrun);
-    var message = new OSC.Message('/request_ai', AIrun);
-    // send message
-    osc.send(message, { host: '127.0.0.1', port: 8080 });
-// });
-    //alert("user requested AI, selection: "+selection);
-  $(this).toggle();
-
-  $("#AIrec").show();
-  $("#Submit").prop("disabled", false);
-  
-});
 
 // Show the slider once Submit is clicked
 function Show() {
@@ -266,17 +244,18 @@ $("input:radio").change(function ()
 {
   $("#ai").prop("disabled", false);
 //logging the time and deciison
-     var d = new Date();
+     
      var selection = document.querySelector('input[name = "group1"]:checked').value;
      //TODO change to time the screen appears
 
      var selTime = Date.now(); 
      console.log("selection: "+ selection+ "@ selection Time: "+ selTime);
-//add to dictionary of time and value
-
+    //add to dictionary of time and value
+    var message = new OSC.Message('/inputradio', selection);
+    // send message
+    osc.send(message, { host: '127.0.0.1', port: 8080 });
 });
 
-// To enable 'Next' once the slider is moved
 // To enable 'Next' once the slider is moved
       $("#slider1").on("slideStop", function() {
         $(".MyButton").prop("disabled", null);

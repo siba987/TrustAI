@@ -1,7 +1,7 @@
 <html class=" csspointerevents pointerevents">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+		<script src="/js/osc.min.js"></script>
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<title>AI Experiment</title>
 		<!-- Stylesheet: Layout -->
@@ -239,19 +239,85 @@
 			            <th>Final Year </th>
 			            <th>Clubs </th>
 			            <th>AI recommendation </th>
-			      		<th>Correct Desicion</th>
+			      		<th>Correct Decision</th>
 			      		<th>Your Decision </th>
 			      
 			        </tr>
 			    </thead>
-			    <tbody></tbody>
+			    <tbody><pre id="json"></pre></tbody>
 			  </table>
 
 				</div>
 				<br>
+				<!-- <input class="MyButton" type="button" id = "load" title="Summary" tabindex="200" > -->
 				 <input class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" onclick="window.location.href='survey.html'">
-				
-			
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">			
+var osc = new OSC();
+osc.open({ host: '127.0.0.1', port: 8080 });
+
+$(document).ready(function(){
+
+	//document.getElementById("json").innerHTML = JSON.stringify(data, undefined, 2);
+	/*$('#load').click(function (){
+		let msg = new OSC.Message('/summary_data', 'yes');
+         osc.send(msg, { host: '127.0.0.1', port: 8080 });
+	});*/
+	setTimeout(function () {
+		  var reqmsg = new OSC.Message('/summary_data', 'row');
+		  osc.send(reqmsg, { host: '127.0.0.1', port: 8080 });
+		}, 200);
+
+	});
+	
+
+
+	osc.on('/summarydata_requested', message => {
+		var trials = message['args'][0];
+
+		$(function() {
+                              var trHTML = '';
+                              $.each(trials, function (i, item) {
+                                  trHTML += '<tr><td>' 
+                                  +'A'+ '</td><td>' 
+                                  + item.A + '</td><td>'  
+                                  +'B'+ '</td><td>' 
+                                  + item.B + '</td><td>' // this prints first 2 columns
+                                  '</td></tr>';
+                              });
+                              $('table#summaryTable tbody').append(trHTML);
+                        });
+		 
+                .done(function(data) {
+                  console.log( "done - success" );
+                  console.log('print object: ' + JSON.stringify(data));
+                })
+                .fail(function() {
+                  console.log( "error" );
+                })
+                .always(function() {
+                  console.log( "complete" );
+                });
+               
+		/*trials.forEach(function(val){
+			var keys = Object.keys(val);
+			html += "<div class = 'cat'>";
+		  keys.forEach(function(key) {
+		    html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
+		  });
+		  html += "</div><br>";
+		});*/
+/*var htmlLine = '<tr>' ;
+      		htmlLine += '<td style="margin: 10px; padding: 5px;">' + lineDataArray[0] + '</td>'; // this is one td element of the line that contain the data element as text
+      		// add the end of html line
+   			htmlLine += '</tr>';
+    	}
+    
+    }*/
+	
+});
+
+</script>
 
 			<hr style="margin: 40px 0 10px 0">
 			<div class="s2t-footer">

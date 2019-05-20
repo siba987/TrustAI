@@ -1,6 +1,7 @@
 <html class=" csspointerevents pointerevents">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="/js/osc.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>AI Experiment</title>
     <!-- Style -->
@@ -363,6 +364,8 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/d3.v5.min.js"></script>
 <script type="text/javascript">
+var osc = new OSC();
+osc.open({ host: '127.0.0.1', port: 8080 });
 $(document).ready(function(){
     $('#radioValidate').click(function(){
       var allIsanswered = true;
@@ -380,9 +383,15 @@ $(document).ready(function(){
               let question = $(this).find('td').first().text();
               var answer = $(this).find('td input[type="radio"]:checked').first().val();
               // suppose we have questionner id = 1 (we have to load data to detect which id 1 or 2)
-              var quesId = 31;
+              var quesId = 12;
               logArray.push("partID: "+question + ', ' + answer + ', ' + quesId);
+              let msg = new OSC.Message('/PreQuestionnaire2', question, answer, quesId);
+              osc.send(msg, { host: '127.0.0.1', port: 8080 });
           });
+          
+          var quest_done = 'true';
+          let msg = new OSC.Message('/PreQuestionnaire2_done', quest_done);
+          osc.send(msg, { host: '127.0.0.1', port: 8080 });
           
           console.log(logArray);
           StartExp();
