@@ -86,6 +86,7 @@ osc.on('/init_experiment', message => {
                   + currentdate.getMinutes() + "-" 
                   + currentdate.getSeconds();
   logger['start_time'] = datetime;
+  logger['delay_time'] = delay;
   console.log(logger);
   
   // init trial, block
