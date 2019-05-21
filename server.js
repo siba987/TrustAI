@@ -475,22 +475,25 @@ osc.on('/PreQuestionnaire3_done', message => {
   blockId = 3;
 });*/
 
-osc.on('/usability', message => {
+/*osc.on('/usability', message => {
 
   let Q_id = message['args'][0];
   let rating = message['args'][1];
   
   logger['study']['UsabilityQ'].push([Q_id, ans]);
-});
+});*/
 
 osc.on('/usability2', message => {
 
-  let bestAI = message['args'][0];
-  let reason = message['args'][1];
-  let perceivedDelay = message['args'][2];
+  let id = message['args'][0];
+  let answer = message['args'][1];
+  let bestAI = message['args'][2];
   
-
-  logger['study']['UsabilityQ'].push({'Best AI':bestAI, 'Reason for choosing':reason, 'Perceived Delay': perceivedDelay}); 
+  if (bestAI != null){
+    logger['study']['UsabilityQ'][0] = {'Best AI': bestAI};
+    console.log('this is the best!')
+  }
+  logger['study']['UsabilityQ'].push({id, answer}); 
   
 });
 
