@@ -1,0 +1,380 @@
+<html class=" csspointerevents pointerevents">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="/js/osc.min.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<title>AI Experiment</title>
+		<!-- Stylesheet: Layout -->
+		<style type="text/css">
+			input.MyButton {
+				width: 80px;
+				padding: 10px;
+				cursor: pointer;
+				font-weight: bold;
+				font-size: 130%;
+				background: #5273b9;
+				color: #fff;
+				border: 1px solid #5273b9;
+				border-radius: 10px;
+			}
+
+			input.MyButton:hover {
+				color: #ffff00;
+				background: #000;
+				border: 1px solid #fff;
+			}
+
+			body { 
+				background-color: #EEEEEE; 
+				padding-bottom: 24px; 
+				line-height: 1.5em; 
+				padding: 10px; 
+			}
+			
+			div.s2t-logo img { 
+				max-width: 100%; 
+				box-sizing: border-box; 
+			}
+			
+			div.s2t-logo { 
+				text-align: center 
+			}
+			
+			div.s2t-logo img:first-child { 
+				margin-bottom: 30px; 
+				padding: 0 40px 10px 40px; 
+			}
+			
+			div.questionary { 
+				background-color: white; 
+				border: 1px solid #5273B9; 
+				min-width: 320px; 
+				max-width: 780px; 
+				box-sizing: border-box; 
+				padding: 20px; 
+				margin: 0 auto; 
+			}
+			
+			hr { 
+				height: 2px; 
+				background-color: transparent; 
+				border: 0 none; 
+				border-bottom: 2px solid #CCCCCC; 
+				margin: 40px 0 
+			}
+			
+			a { 
+				text-decoration: none; 
+			}
+			
+			h1 { 
+				text-align: center; 
+				font-weight: normal; 
+				font-size: 24px 
+			}
+			
+			h2 { 
+				text-align: center; 
+				font-weight: normal; 
+				font-size: 18px 
+			}
+
+			div.s2t-footer {
+			  display: -webkit-box; 
+			  display: -moz-box; 
+			  display: -ms-flexbox; 
+			  display: -webkit-flex; 
+			  display: flex;
+			}
+
+			div.s2t-progress {
+				width: 280px;
+				-webkit-box-flex: 1;
+				-moz-box-flex: 1;
+				-webkit-flex: 1 1 280px;
+				-ms-flex: 1 1 280px;
+				flex: 1 1 280px;
+				margin: 0 0 0 20px
+				-webkit-box-ordinal-group: 2;
+				-moz-box-ordinal-group: 2;
+				-ms-flex-order: 2;
+				-webkit-order: 2;
+				order: 2; 
+			}
+
+			div.s2t-imprint {
+				width: 520px;
+				-webkit-box-flex: 9;
+				-moz-box-flex: 9;
+				-webkit-flex: 9 1 520px;
+				-ms-flex: 9 1 520px;
+				flex: 9 1 520px;
+				max-width: 100%;
+				-webkit-box-ordinal-group: 1;
+				-moz-box-ordinal-group: 1;
+				-ms-flex-order: 1;
+				-webkit-order: 1;
+				order: 1;
+			}
+
+			@media (max-width: 560px) {
+				div.s2t-footer { 
+					display: block; 
+				}
+				
+				div.s2t-progress { 
+					margin: 0 0 16px 0; 
+				}
+				
+				div.s2t-logo img:first-child { 
+					padding: 0 20px 10px 20px;
+				}
+			}
+			
+			@media (max-width: 480px) {
+				body { 
+					padding: 0; 
+				}
+				
+				div.questionary { 
+					padding: 10px; 
+				}
+				
+				div.s2t-logo img:first-child { 
+					padding: 0 0 10px 0; 
+				}
+			}
+			
+			div.head.selscale { 
+				background-color: #BAD0FF; 
+				color: #000000;
+			}
+			
+			div.head { 
+				background-color: transparent; 
+				color: #000000; 
+			}
+			
+			table.question td.anchor, div.question div.anchor, table.question th, table.question th.subheading { 
+				background-color: transparent; 
+				color: #000000 
+			}
+			table {
+			   margin: 0px auto;  
+			}
+
+			div.chapter h1 { 
+				background-color: #f4e289; 
+				color: white; 
+				font-weight: bold; 
+				text-align: right; 
+				padding: 3px 16px 0 16px; 
+				font-size: 38px; 
+				line-height: 1em; 
+				margin-bottom: -0.16em; 
+			}
+			
+			div.chapter > div { 
+				background-color: #BAD0FF; 
+				padding: 20px 16px 10px 16px 
+			}
+			
+			div.chapter > div > p:first-child { 
+				margin-top: 0; 
+			}
+			
+			div.chapter > div > p:last-child { 
+				margin-bottom: 0; 
+			}
+			
+			body {
+				font-size: 14px;
+				font-family: sans-serif;
+				color: #333;
+			}
+			
+		</style>
+		<link rel="stylesheet" type="text/css" href="instructionsstyle.css">
+	</head>
+	<body>
+		<div class="invisible">
+			<input type="hidden" name="i" value="RFWI5D2NVCSW">
+			<input type="hidden" name="page" value="1">
+			<input type="hidden" name="l" value="fre">
+			<input type="submit" name="submitDefault" id="submitDefault" value="^" title="^" aria-hidden="true">
+		</div>
+		<div class="questionary">
+			<div class="s2t-logo">
+				<img src="isir.png" alt="" class="s2-logo">
+			</div>
+			<div id="IT16_media" class="s2question spacing">
+				<div class="items spacing">
+					<h1><b> Post-experiment survey </b></h1>
+				</div>
+			</div>
+			<!-- TEXT -->
+			<div class="title">
+				<p>Experiment Overview</p>
+			</div>
+			<div class="titleSpacing"></div>
+				<br>
+				<div style="text-align:justify;"> Here are a few questions on the design of the experiment.  </div>
+				<br>
+				<br>
+
+				<div class="rowTab">
+                 <div class="labels">
+                    <label id="crt4" > 1. Which AI did you trust the most? And why?
+                    	<select id="dropdown" name="currentPos" class="dropdown">
+			              <option disabled="" selected="" value="">Select an option</option>
+			              <option value="davebio">Dave Bio</option>
+			              <option value="mavechem">Mave Chem</option>
+			              <option value="javephy">Jave Phy</option>
+			            </select>
+                  </div>
+                  <div class="rightTab">
+                    <input autofocus="" type="text" id="reason_trust" class="input-field" placeholder="Long answer" required="">
+                  </div>
+              </div> <br><br>
+
+              <div class="rowTab">
+                 <div class="labels">
+                    <label id="crt4" > 2. Please rate the following statements according to the degree of transparency (1- least transparent, 7- most transparent)
+                  </div>
+                  <div class="rightTab">
+                  	<table id="usability">
+                  		<thead>
+                  			 <tr>
+					            <th></th>
+					            <th>1</th>
+					            <th>2</th>
+					            <th>3</th>
+					            <th>4</th>
+					            <th>5</th>
+					            <th>6</th>
+					            <th>7</th>
+					        </tr>
+                  		</thead>
+                  		<tbody>
+                  			<tr>
+					            <td>Loading, Please wait...</td>
+					            <td><input type="radio" value="1" name="simple"/></td>
+					            <td><input type="radio" value="2" name="simple"/></td>
+					            <td><input type="radio" value="3" name="simple"/></td>
+					            <td><input type="radio" value="4" name="simple"/></td>
+					            <td><input type="radio" value="5" name="simple"/></td>
+					            <td><input type="radio" value="6" name="simple"/></td>
+					            <td><input type="radio" value="7" name="simple"/></td>
+					        </tr>
+					        <tr>
+					            <td>Warming up the code</td>
+					            <td><input type="radio" value="1" name="entertaining"/></td>
+					            <td><input type="radio" value="2" name="entertaining"/></td>
+					            <td><input type="radio" value="3" name="entertaining"/></td>
+					            <td><input type="radio" value="4" name="entertaining"/></td>
+					            <td><input type="radio" value="5" name="entertaining"/></td>
+					            <td><input type="radio" value="6" name="entertaining"/></td>
+					            <td><input type="radio" value="7" name="entertaining"/></td>
+					        </tr>
+					        <tr>
+					            <td>Analyzing profiles from the previous years</td>
+					            <td><input type="radio" value="1" name="trans"/></td>
+					            <td><input type="radio" value="2" name="trans"/></td>
+					            <td><input type="radio" value="3" name="trans"/></td>
+					            <td><input type="radio" value="4" name="trans"/></td>
+					            <td><input type="radio" value="5" name="trans"/></td>
+					            <td><input type="radio" value="6" name="trans"/></td>
+					            <td><input type="radio" value="7" name="trans"/></td>
+					        </tr>
+                  		</tbody>
+                  	</table>
+                    <!-- <input autofocus="" type="text" id="loading_info" class="input-field" placeholder="Enter a number" required=""> -->
+                  </div>
+              </div> 
+             
+              <br>
+              <br>
+
+              <div class="rowTab">
+                 <div class="labels">
+                    <label id="crt4" > 3. How long was the delay for the last AI system that you used? Please round to the nearest whole number.
+                  </div>
+                  <div class="rightTab">
+                    <input autofocus="" type="text" id="del" class="input-field" placeholder="Enter a number" required="">
+                  </div>
+              </div> <br><br>
+				 <input class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" >
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">			
+var osc = new OSC();
+osc.open({ host: '127.0.0.1', port: 8080 });
+
+$(document).ready(function(){
+
+	 $('#usability tbody tr').each(function(){
+              var question = $(this).find('td').first().text();
+              var rating = $(this).find('td input[type="radio"]:checked').first().val();
+
+              //logArray.push(question + ', ' + answer);
+              /*let msg = new OSC.Message('/usability', question, rating);
+              osc.send(msg, { host: '127.0.0.1', port: 8080 });*/
+          });
+
+	$('.MyButton').click(function(event) {
+		var bestAI = $('#dropdown').val();
+		var reason_trust = $('#reason_trust').val();
+		var p_delay = $('#del').val();
+
+		//console.log(bestAI, reason_trust, p_delay);
+		//log information to file
+		let msg = new OSC.Message('/usability2', bestAI, reason_trust, p_delay);
+        osc.send(msg, { host: '127.0.0.1', port: 8080 });
+
+		window.location.href='survey.html';
+	});
+
+
+});
+
+	/*$.getJSON( "experiment.json", function(data) {
+			$(function() {
+                var trHTML = '';
+                $.each(data, function (key, item) {
+                	trHTML += '<tr>';
+                	trHTML += '<td>' + item['Candidate']+ '</td>';
+                	trHTML += '<td>' + item.Uni + '</td>';
+                	trHTML += '<td>' + item['Sub 1'] + '</td>';
+                	trHTML += '<td>' + item['Sub 2'] + '</td>';
+                	trHTML += '<td>' + item['Sub 3'] + '</td>';
+                	trHTML += '<td>' + item['Final Year'] + '</td>';
+                	trHTML += '<td>' + item.Clubs + '</td>';
+                	trHTML += '<td>' + item['AI recommendation'] + '</td>';
+                	trHTML += '<td>' + item['Correct Decision'] + '</td>';
+                	//trHTML += '<td>' + 
+                	trHTML += + '</tr>';
+
+                	});
+                    $('table#summaryTable tbody').append(trHTML);
+         		})
+		 	})
+
+	
+		});*/
+
+
+
+</script>
+
+			<hr style="margin: 40px 0 10px 0">
+			<div class="s2t-footer">
+  				
+ 				<div class="s2t-imprint"><font size="-2">M2 Research Thesis for Paris 1 & Paris 5 together with Paris 6 and Paris-Saclay - 2019</font></div>
+			</div>
+		<div>
+			<input name="zomplete" value="yes" type="hidden">
+		</div>
+		<div>
+			<input name="page_form_width" type="hidden" value="933">
+		</div>
+	</body>
+</html>

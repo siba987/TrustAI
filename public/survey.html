@@ -371,14 +371,14 @@ $(document).ready(function(){
 
     //var surv_done = 'true';
     var gender = $('#dropdown').val();
-    var field_study = document.querySelector('input[name = "radio-buttons"]:checked').value;
+    var level_study = document.querySelector('input[name = "radio-buttons"]:checked').value;
     var logArray = [];
 
     $(".input-field").each(function(){
         var id = $(this).attr('id');
              // var question = $(this).find('td').first().text();
         var answer = $(this).val();
-        let msg = new OSC.Message('/survey', id, answer, gender, field_study);
+        let msg = new OSC.Message('/survey', id, answer, gender, level_study);
         osc.send(msg, { host: '127.0.0.1', port: 8080 });
         logArray.push([id, answer]);
      });
@@ -387,10 +387,6 @@ $(document).ready(function(){
    var surv_done = 'true';
    let msg = new OSC.Message('/surv_done', surv_done);
    osc.send(msg, { host: '127.0.0.1', port: 8080 });
-    
-    logArray.push([gender, field_study]);
-    console.log(logArray); //check value
-
     
     //go to final page
     window.location.href='thanku.html';

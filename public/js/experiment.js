@@ -62,9 +62,9 @@ $(document).ready(function(){
 
   $("#ai").bind('click', function() {
 
-    var AIrun = Date.now(); 
-    console.log("Run AI @ Time: "+ AIrun);
-    var message = new OSC.Message('/request_ai', AIrun);
+    /*var AIrun = Date.now(); 
+    console.log("Run AI @ Time: "+ AIrun);*/
+    var message = new OSC.Message('/request_ai', 'runAI');
       // send message
     osc.send(message, { host: '127.0.0.1', port: 8080 });
 
@@ -77,9 +77,11 @@ $(document).ready(function(){
   });
 
   $('#Submit').click(function(event){
-
+    //disable the button
+    $(this).attr('disabled', true);
+    //disable radio button
+    $('input[name = "group1"]').attr('disabled', true);
     var message = new OSC.Message('/submit_decision', 'submit');
-    // send message
     osc.send(message, { host: '127.0.0.1', port: 8080 });
     
   });
@@ -208,37 +210,7 @@ var showFeedback = function(){
   mod.style.display = "block";
 
 }
-  // remove existing lines from the html table
-  /*$('table#fbTable tbody tr').remove();
-
-osc.on('/open_loading_screen', message => {
-  // todo
-  //open loading screen 
-  var info = message.args[0];  
-  var airec = message.args[1];  
-  console.log(info, airec);
-
-//var info = "Transparent"; UNCOMMENT THIS to test
-  switch(info){
-    case "Simple":
-    //load simple screen
-      //new_popup();
-      var popupwin = window.open('http://localhost:8888/loadingsimplel.html');
-      setTimeout(function() { popupwin.close();}, 8000);
-      break;
-    case "Transparent":
-      var popupwin = window.open('http://localhost:8888/loadingtranspl.html');
-      setTimeout(function() { popupwin.close();}, 8000);
-      break;
-    case "Entertaining":
-      var popupwin = window.open('http://localhost:8888/loadingentl.html');
-      setTimeout(function() { popupwin.close();}, 8000);
-      break;
-    default:
-      alert("error")
-      break;
-  }
-*/
+  
 
 $("input:radio").change(function () 
 {
@@ -248,8 +220,8 @@ $("input:radio").change(function ()
      var selection = document.querySelector('input[name = "group1"]:checked').value;
      //TODO change to time the screen appears
 
-     var selTime = Date.now(); 
-     console.log("selection: "+ selection+ "@ selection Time: "+ selTime);
+     /*var selTime = Date.now(); 
+     console.log("selection: "+ selection+ "@ selection Time: "+ selTime);*/
     //add to dictionary of time and value
     var message = new OSC.Message('/inputradio', selection);
     // send message

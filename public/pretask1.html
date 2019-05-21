@@ -1,12 +1,29 @@
 <html class=" csspointerevents pointerevents">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="/js/osc.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>AI Experiment</title>
-    <!-- Style -->
+    <!-- Stylesheet: Layout -->
     <style type="text/css">
-        body { 
+      input.MyButton {
+        width: 80px;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 130%;
+        background: #5273b9;
+        color: #fff;
+        border: 1px solid #5273b9;
+        border-radius: 10px;
+      }
+
+      input.MyButton:hover {
+        color: #ffff00;
+        background: #000;
+        border: 1px solid #fff;
+      }
+
+      body { 
         background-color: #EEEEEE; 
         padding-bottom: 24px; 
         line-height: 1.5em; 
@@ -29,7 +46,7 @@
       
       div.questionary { 
         background-color: white; 
-        border: 1px solid #f4e289; 
+        border: 1px solid #5273B9; 
         min-width: 320px; 
         max-width: 780px; 
         box-sizing: border-box; 
@@ -67,6 +84,21 @@
         display: -ms-flexbox; 
         display: -webkit-flex; 
         display: flex;
+      }
+
+      div.s2t-progress {
+        width: 280px;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -webkit-flex: 1 1 280px;
+        -ms-flex: 1 1 280px;
+        flex: 1 1 280px;
+        margin: 0 0 0 20px
+        -webkit-box-ordinal-group: 2;
+        -moz-box-ordinal-group: 2;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2; 
       }
 
       div.s2t-imprint {
@@ -156,46 +188,6 @@
         font-family: sans-serif;
         color: #333;
       }
-      
-      .centerblock {
-        background-color: #f4e289;
-        padding-top: 2px;
-        padding-bottom: 2px;
-        font-size: 14px;
-        font-weight: bold;
-        font-family: sans-serif;
-        color: #5273B9; 
-        text-align:center;
-      }
-      
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      input.MyButton {
-        width: 80px;
-        padding: 10px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 130%;
-        background: #f4e289;
-        color: #5273B9;
-        border: 1px solid #f4e289;
-        border-radius: 10px;
-      }
-      
-      input.MyButton:hover {
-        color: #ffff00;
-        background: #000;
-        border: 1px solid #fff;
-      }
-      
-      input.MyButton:disabled {
-        background: #F5F5F5;
-        color : #C3C3C3;
-        cursor:none;
-        pointer-events: none;
-      }
     </style>
     <link rel="stylesheet" type="text/css" href="instructionsstyle.css">
   </head>
@@ -208,16 +200,17 @@
     </div>
     <div class="questionary">
       <div class="s2t-logo">
-        <img src="davebio.png" alt="" class="s2-logo">
+        <img src="isir.png" alt="" class="s2-logo">
       </div>
-      <!-- THE UNI TITLE -->
-      <div class="centerblock">
-        <div class="square"><p>DAVE BIO UNIVERSITY</p></div>
+      
+      <div class="title">
+        <p> Admissions AI </p>
       </div>
       <div class="titleSpacing"></div>
+
       <br>
       <div style="text-align:justify;">
-      Below is a list of statements for evaluating trust between you and DaveAI. There are several scales for you to rate intensity of your feeling of trust, or your impression of DaveAI. We know you have not used it yet, just go with your intuition. Please, choose on each line the point which best describes your feeling or your impression (1 - totally disagree; 7 - totally agree).</div>
+      Below is a list of statements for evaluating trust in the university Admissions AI assistants that were briefly introduced earlier. There are several scales for you to rate intensity of your feeling of trust, or your impression of the AI assistants. <b>We know you have not used them yet, so please answer this questionnaire to the best of your ability.</b> Please, choose on each line the point which best describes your feeling or your impression (1 - strongly disagree; 7 - strongly agree).</div>
           <br><br>
       <div id="results"></div>
 
@@ -238,7 +231,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>DaveAI is deceptive</td>
+            <td>1. The Admissions AI is deceptive</td>
             <td><input type="radio" value="1" name="deceptive"/></td>
             <td><input type="radio" value="2" name="deceptive"/></td>
             <td><input type="radio" value="3" name="deceptive"/></td>
@@ -248,7 +241,7 @@
             <td><input type="radio" value="7" name="deceptive"/></td>
         </tr>
         <tr>
-            <td>DaveAI behaves in an underhanded manner (<i>underhanded = deceitful, dishonest</i>)</td>
+            <td>2. The Admissions AI behaves in an underhanded manner (<i>underhanded = deceitful, dishonest</i>)</td>
             <td><input type="radio" value="1" name="underhanded"/></td>
             <td><input type="radio" value="2" name="underhanded"/></td>
             <td><input type="radio" value="3" name="underhanded"/></td>
@@ -258,7 +251,7 @@
             <td><input type="radio" value="7" name="underhanded"/></td>
         </tr>
         <tr>
-            <td>I am suspicious of the DaveAI&apos;s intent, action, and outputs</td>
+            <td>3. I am suspicious of the Admissions AI&apos;s intent, action, and outputs</td>
             <td><input type="radio" value="1" name="suspicious"/></td>
             <td><input type="radio" value="2" name="suspicious"/></td>
             <td><input type="radio" value="3" name="suspicious"/></td>
@@ -268,7 +261,7 @@
             <td><input type="radio" value="7" name="suspicious"/></td>
         </tr>
         <tr>
-            <td>I am wary of DaveAI</td>
+            <td>4. I am wary of the Admissions AI</td>
             <td><input type="radio" value="1" name="wary"/></td>
             <td><input type="radio" value="2" name="wary"/></td>
             <td><input type="radio" value="3" name="wary"/></td>
@@ -278,7 +271,7 @@
             <td><input type="radio" value="7" name="wary"/></td>
         </tr>
         <tr>
-            <td>The DaveAI&apos;s actions will have a harmful or injurious outcome</td>
+            <td>5. The actions of the Admissions AI will have a harmful or injurious outcome</td>
             <td><input type="radio" value="1" name="harm"/></td>
             <td><input type="radio" value="2" name="harm"/></td>
             <td><input type="radio" value="3" name="harm"/></td>
@@ -288,7 +281,7 @@
             <td><input type="radio" value="7" name="harm"/></td>
         </tr>
         <tr>
-            <td>I am confident in the DaveAI</td>
+            <td>6. I am confident in the Admissions AI</td>
             <td><input type="radio" value="1" name="confident"/></td>
             <td><input type="radio" value="2" name="confident"/></td>
             <td><input type="radio" value="3" name="confident"/></td>
@@ -299,7 +292,7 @@
         </tr>
 
         <tr>
-            <td>DaveAI provides security</td>
+            <td>7. The Admissions AI provides security</td>
             <td><input type="radio" value="1" name="security"/></td>
             <td><input type="radio" value="2" name="security"/></td>
             <td><input type="radio" value="3" name="security"/></td>
@@ -309,7 +302,7 @@
             <td><input type="radio" value="7" name="security"/></td>
         </tr>
         <tr>
-            <td>DaveAI has integrity</td>
+            <td>8. The Admissions AI has integrity</td>
             <td><input type="radio" value="1" name="integrity"/></td>
             <td><input type="radio" value="2" name="integrity"/></td>
             <td><input type="radio" value="3" name="integrity"/></td>
@@ -319,7 +312,7 @@
             <td><input type="radio" value="7" name="integrity"/></td>
         </tr>
         <tr>
-            <td>DaveAI is dependable</td>
+            <td>9. The Admissions AI is dependable</td>
             <td><input type="radio" value="1" name="dependable"/></td>
             <td><input type="radio" value="2" name="dependable"/></td>
             <td><input type="radio" value="3" name="dependable"/></td>
@@ -329,7 +322,7 @@
             <td><input type="radio" value="7" name="dependable"/></td>
         </tr>
         <tr>
-            <td>DaveAI is reliable</td>
+            <td>10. The Admissions AI is reliable</td>
             <td><input type="radio" value="1" name="reliable"/></td>
             <td><input type="radio" value="2" name="reliable"/></td>
             <td><input type="radio" value="3" name="reliable"/></td>
@@ -339,7 +332,7 @@
             <td><input type="radio" value="7" name="reliable"/></td>
         </tr>
         <tr>
-            <td>I can trust DaveAI</td>
+            <td>11. I can trust the Admissions AI</td>
             <td><input type="radio" value="1" name="trust"/></td>
             <td><input type="radio" value="2" name="trust"/></td>
             <td><input type="radio" value="3" name="trust"/></td>
@@ -349,7 +342,7 @@
             <td><input type="radio" value="7" name="trust"/></td>
         </tr>
         <tr>
-            <td>I am familiar with DaveAI</td>
+            <td>12. I am familiar with the Admissions AI</td>
             <td><input type="radio" value="1" name="familiar"/></td>
             <td><input type="radio" value="2" name="familiar"/></td>
             <td><input type="radio" value="3" name="familiar"/></td>
@@ -362,6 +355,7 @@
 </table>  
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="/js/osc.min.js"></script>
 <script type="text/javascript" src="js/d3.v5.min.js"></script>
 <script type="text/javascript">
 var osc = new OSC();
@@ -386,7 +380,7 @@ $(document).ready(function(){
               var quesId = 11;
               logArray.push(question + ', ' + answer + ', ' + quesId);
 
-              let msg = new OSC.Message('/PreQuestionnaire1', question, answer, quesId);
+              let msg = new OSC.Message('/PreQuestionnaire1', quesId, question, answer);
               osc.send(msg, { host: '127.0.0.1', port: 8080 });
           });
           
@@ -402,7 +396,7 @@ $(document).ready(function(){
     });
 
     function StartExp() {
-        window.location.href='maintrial.html';
+        window.location.href='part1.html';
       }
 </script>
 <p class="sceditor-nlf" style="text-align:justify;"><br></p>

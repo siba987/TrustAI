@@ -102,12 +102,13 @@ osc.on('/init_experiment', message => {
     'PreQuestionnaire1' : [],
     'Block1' : { }, // try as array
     'PostQuestionnaire1' : [],
-    'PreQuestionnaire2' : [],
+    //'PreQuestionnaire2' : [],
     'Block2' : {},
     'PostQuestionnaire2' : [],
-    'PreQuestionnaire3' : [],
+   // 'PreQuestionnaire3' : [],
     'Block3' : {},
     'PostQuestionnaire3' : [],
+    'UsabilityQ': [],
     'Survey' : [] // or  {}
   }
   
@@ -281,12 +282,17 @@ osc.on('/submit_decision', message=> {
   console.log(arrayRadioButtonBlocks); 
 });
 
+
 // PreQuestionnaire1
 osc.on('/PreQuestionnaire1', message => {
-  let question = message['args'][0];
-  let answer = message['args'][1];
-  let quesId = message['args'][2];
-  logger['study']['PreQuestionnaire1'].push([quesId, question, answer]);
+  let quesId = message['args'][0];
+  let question = message['args'][1];
+  let answer = message['args'][2];
+  //logger['study']['PreQuestionnaire1'].push([quesId, question, answer]);
+  
+  logger['study']['PreQuestionnaire1'].push({ 'Q_id': quesId,
+                                                   'Statement': question, 
+                                                   'Rating': answer});
 });
 
 osc.on('/PreQuestionnaire1_done', message => {
@@ -303,6 +309,7 @@ osc.on('/PreQuestionnaire1_done', message => {
     console.log('complete preques');
     });
   blockId = 1;
+  
 });
 
 osc.on('/PostQuestionnaire1', message => {
@@ -311,18 +318,44 @@ osc.on('/PostQuestionnaire1', message => {
   let question = message['args'][1];
   let answer = message['args'][2];
   let trust = message['args'][3];
-  logger['study']['PostQuestionnaire1']['overall_trust']= trust;
-  logger['study']['PostQuestionnaire1'].push([quesId, question, answer]);
+ 
+  logger['study']['PostQuestionnaire1'][0] = {'overall_trust': trust};
+
+  logger['study']['PostQuestionnaire1'].push({ 'Q_id': quesId,
+                                                   'Statement': question, 
+                                                   'Rating': answer});
+});
+
+//
+osc.on('/PostQuestionnaire1_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete postques');
+    }
+);
+   blockId = 2;
 });
 
 
-
 // PreQuestionnaire2
-osc.on('/PreQuestionnaire2', message => {
+/*osc.on('/PreQuestionnaire2', message => {
   let question = message['args'][0];
   let answer = message['args'][1];
   let quesId = message['args'][2];
-  logger['study']['PreQuestionnaire2'].push([quesId, question, answer]);
+  //logger['study']['PreQuestionnaire2'].push([quesId, question, answer]);
+  var count = String(i);
+  logger['study']['PreQuestionnaire2'][count] = {'Q_id': quesId,
+                                                 'Statement': question, 
+                                                 'Rating': answer};
+  i ++;
 });
 
 osc.on('/PreQuestionnaire2_done', message => {
@@ -340,7 +373,8 @@ osc.on('/PreQuestionnaire2_done', message => {
     }
 );
   blockId = 2;
-});
+  i = 1;
+});*/
 
 
 osc.on('/PostQuestionnaire2', message => {
@@ -349,22 +383,14 @@ osc.on('/PostQuestionnaire2', message => {
   let question = message['args'][1];
   let answer = message['args'][2];
   let trust = message['args'][3];
-  logger['study']['PostQuestionnaire2']['overall_trust']= trust;
-  logger['study']['PostQuestionnaire2'].push([quesId, question, answer]);
+  /*logger['study']['PostQuestionnaire2']['overall_trust']= trust;
+  logger['study']['PostQuestionnaire2'].push([quesId, question, answer]);*/
+  
+  logger['study']['PostQuestionnaire2'][0] = {'overall_trust': trust};
 
-  /*currentdate = new Date(); 
-  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
-                  + currentdate.getHours() + "-"  
-                  + currentdate.getMinutes() + "-" 
-                  + currentdate.getSeconds();
-  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
-  var json = JSON.stringify(logger);
-  var fs = require('fs');
-  fs.writeFile(filename, json, function(err) {
-    if (err) throw err;
-    console.log('complete postques');
-    }
-);*/
+  logger['study']['PostQuestionnaire2'].push({ 'Q_id': quesId,
+                                                   'Statement': question, 
+                                                   'Rating': answer});
 });
 
 
@@ -386,38 +412,20 @@ osc.on('/PostQuestionnaire2_done', message => {
 });
 
 // PreQuestionnaire3
-osc.on('/PreQuestionnaire3', message => {
-  let question = message['args'][0];
-  let answer = message['args'][1];
-  let quesId = message['args'][2];
-  logger['study']['PreQuestionnaire3'].push([quesId, question, answer]);
-});
-
-osc.on('/PreQuestionnaire3_done', message => {
-  currentdate = new Date(); 
-  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
-                  + currentdate.getHours() + "-"  
-                  + currentdate.getMinutes() + "-" 
-                  + currentdate.getSeconds();
-  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
-  var json = JSON.stringify(logger);
-  var fs = require('fs');
-  fs.writeFile(filename, json, function(err) {
-    if (err) throw err;
-    console.log('complete preques');
-    }
-);
-  blockId = 3;
-});
-
 osc.on('/PostQuestionnaire3', message => {
   // TOOD
   let quesId = message['args'][0];
   let question = message['args'][1];
   let answer = message['args'][2];
   let trust = message['args'][3];
-  logger['study']['PostQuestionnaire3']['overall_trust']= trust;
-  logger['study']['PostQuestionnaire3'].push([quesId, question, answer]);
+  /*logger['study']['PostQuestionnaire3']['overall_trust']= trust;
+  logger['study']['PostQuestionnaire3'].push([quesId, question, answer]);*/
+  var count = String(i);
+  logger['study']['PostQuestionnaire3'][0] = {'overall_trust': trust};
+
+  logger['study']['PostQuestionnaire3'].push({ 'Q_id': quesId,
+                                                   'Statement': question, 
+                                                   'Rating': answer});
   
 });
 
@@ -438,14 +446,65 @@ osc.on('/PostQuestionnaire3_done', message => {
 );
    //blockId = 0;
 });
+/*osc.on('/PreQuestionnaire3', message => {
+  let quesId = message['args'][0];
+  let question = message['args'][1];
+  let answer = message['args'][2];
+  //logger['study']['PreQuestionnaire3'].push([quesId, question, answer]);
+  var count = String(i);
+  logger['study']['PreQuestionnaire3'][count] = {'Q_id': quesId,
+                                                 'Statement': question, 
+                                                 'Rating': answer};
+  i ++;
+});
+
+osc.on('/PreQuestionnaire3_done', message => {
+  currentdate = new Date(); 
+  datetime = currentdate.getFullYear() + "_" + (currentdate.getMonth()+1)  + "-" + currentdate.getDate() + "-" +
+                  + currentdate.getHours() + "-"  
+                  + currentdate.getMinutes() + "-" 
+                  + currentdate.getSeconds();
+  var filename = 'outputs/log_' + String(participant) + '_' + datetime + '.json';
+  var json = JSON.stringify(logger);
+  var fs = require('fs');
+  fs.writeFile(filename, json, function(err) {
+    if (err) throw err;
+    console.log('complete preques');
+    }
+);
+  blockId = 3;
+});*/
+
+osc.on('/usability', message => {
+
+  let Q_id = message['args'][0];
+  let rating = message['args'][1];
+  
+  logger['study']['UsabilityQ'].push([Q_id, ans]);
+});
+
+osc.on('/usability2', message => {
+
+  let bestAI = message['args'][0];
+  let reason = message['args'][1];
+  let perceivedDelay = message['args'][2];
+  
+
+  logger['study']['UsabilityQ'].push({'Best AI':bestAI, 'Reason for choosing':reason, 'Perceived Delay': perceivedDelay}); 
+  
+});
+
 
 osc.on('/survey', message => {
   var logArray = [];
   let Q_id = message['args'][0];
   let ans = message['args'][1];
+  let gender = message['args'][2];
+  let level_study = message['args'][3];
   /*logger['study']['Survey'] =   {   'gender': gender, 
                                     'study' : study,
                                     "Q&A": logArray };*/
+  logger['study']['Survey'][0] = {'Gender':gender, 'Level of study':level_study}; //do once
   logger['study']['Survey'].push([Q_id, ans]);
 });
 

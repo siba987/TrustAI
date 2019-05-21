@@ -34,7 +34,7 @@ $(document).ready(function(){
 
     // go to instructions
     window.location.href="Instructions1.html";
-    //window.location.href="maintrial.html"; //start with Dave Bio
+    //window.location.href="survey.html"; //start with Dave Bio
 
   });
 
