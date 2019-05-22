@@ -421,7 +421,7 @@ osc.on('/PostQuestionnaire3', message => {
   let trust = message['args'][3];
   /*logger['study']['PostQuestionnaire3']['overall_trust']= trust;
   logger['study']['PostQuestionnaire3'].push([quesId, question, answer]);*/
-  var count = String(i);
+ 
   logger['study']['PostQuestionnaire3'][0] = {'overall_trust': trust};
 
   logger['study']['PostQuestionnaire3'].push({ 'Q_id': quesId,
@@ -476,25 +476,21 @@ osc.on('/PreQuestionnaire3_done', message => {
   blockId = 3;
 });*/
 
-/*osc.on('/usability', message => {
+osc.on('/usability', message => {
 
-  let Q_id = message['args'][0];
-  let rating = message['args'][1];
+  let bestAI = message['args'][0];
   
-  logger['study']['UsabilityQ'].push([Q_id, ans]);
-});*/
+   logger['study']['UsabilityQ'].push(['Best AI', bestAI]);
+   console.log('this is the best!')
+  
+});
 
 osc.on('/usability2', message => {
 
   let id = message['args'][0];
   let answer = message['args'][1];
-  let bestAI = message['args'][2];
   
-  if (bestAI != null){
-    logger['study']['UsabilityQ'][0] = {'Best AI': bestAI};
-    console.log('this is the best!')
-  }
-  logger['study']['UsabilityQ'].push({id, answer}); 
+  logger['study']['UsabilityQ'].push([id, answer]); 
   
 });
 
