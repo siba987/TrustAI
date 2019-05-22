@@ -38,7 +38,7 @@
 			}
 			
 			div.s2t-logo img { 
-				max-width: 100%; 
+				max-width: 50%; 
 				box-sizing: border-box; 
 			}
 			
@@ -211,7 +211,7 @@
 		</div>
 		<div class="questionary">
 			<div class="s2t-logo">
-				<img src="isir.png" alt="" class="s2-logo">
+				<img src="logo.png" alt="" class="s2-logo">
 			</div>
 			<div id="IT16_media" class="s2question spacing">
 				<div class="items spacing">
@@ -342,26 +342,32 @@ $(document).ready(function(){
 
 	$('#done').click(function(event) {
 
+		var bestAI = $('#dropdown').val();
+	    let msg1 = new OSC.Message('/usability', bestAI);
+	    osc.send(msg1, { host: '127.0.0.1', port: 8080 });
+
 		$('#usability tbody tr').each(function(){
               var question = $(this).find('td').first().text();
               var rating = $(this).find('td input[type="radio"]:checked').first().val();
 
               console.log(question + ', ' + rating);
-              let msg = new OSC.Message('/usability2', question, rating);
-              osc.send(msg, { host: '127.0.0.1', port: 8080 });
+              let msg2 = new OSC.Message('/usability2', question, rating);
+              osc.send(msg2, { host: '127.0.0.1', port: 8080 });
           });
 
 		$(".input-field").each(function(){
 	        var id = $(this).attr('id');
 	             // var question = $(this).find('td').first().text();
 	        var answer = $(this).val();
-			var bestAI = $('#dropdown').val();
+			
 			//console.log(bestAI, reason_trust, p_delay);
 			//log information to file
 
-			let msg = new OSC.Message('/usability2', id, answer, bestAI);
-	        osc.send(msg, { host: '127.0.0.1', port: 8080 });
+			let msg3 = new OSC.Message('/usability2', id, answer);
+	        osc.send(msg3, { host: '127.0.0.1', port: 8080 });
 	    });
+
+
 		window.location.href='survey.html';
 	});
 

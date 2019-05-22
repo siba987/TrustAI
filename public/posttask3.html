@@ -449,6 +449,7 @@ var osc = new OSC();
 osc.open({ host: '127.0.0.1', port: 8080 });
 
 $(document).ready(function(){
+
     $('#radioValidate').click(function(){
       var allIsanswered = true;
       $('#quesTable tbody tr').each(function() {
@@ -477,10 +478,10 @@ $(document).ready(function(){
           osc.send(msg, { host: '127.0.0.1', port: 8080 });
           
           console.log(logArray);
-          next();
         }
-        
+        next();
       });
+    
     });
 
     function next() {
