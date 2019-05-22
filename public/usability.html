@@ -230,8 +230,8 @@
 
 				<div class="rowTab">
                  <div class="labels">
-                    <label id="q1" > 1. Which AI did you trust the most? And why did you choose this AI?
-                    	<select id="dropdown" name="currentPos" class="dropdown">
+                    <label id="q1" > 1. Which Admissions AI did you trust the least? Please give a reason for your choice. </label>
+                    	<select id="dropdown0" name="currentPos" class="dropdown">
 			              <option disabled="" selected="" value="">Select an option</option>
 			              <option value="davebio">Dave Bio</option>
 			              <option value="mavechem">Mave Chem</option>
@@ -239,13 +239,28 @@
 			            </select>
                   </div>
                   <div class="rightTab">
-                    <input autofocus="" type="text" id="reason_trust" class="input-field" placeholder="Enter text here" required="">
+                    <input autofocus="" type="text" id="reason_lowtrust" class="input-field" placeholder="Enter text here" required="">
+                  </div>
+              </div> <br><br>
+
+              		<div class="rowTab">
+                 <div class="labels">
+                    <label id="q2" > 2. Which Admissions AI did you trust the most? Please give a reason for your choice. </label>
+                    	<select id="dropdown1" name="currentPos" class="dropdown">
+			              <option disabled="" selected="" value="">Select an option</option>
+			              <option value="davebio">Dave Bio</option>
+			              <option value="mavechem">Mave Chem</option>
+			              <option value="javephy">Jave Phy</option>
+			            </select>
+                  </div>
+                  <div class="rightTab">
+                    <input autofocus="" type="text" id="reason_hightrust" class="input-field" placeholder="Enter text here" required="">
                   </div>
               </div> <br><br>
 
               <div class="rowTab">
                  <div class="labels">
-                    <label id="q2" > 2. How much information about the process behind the AI recommendation is revealed by the following statements? (1- None, 7- All)
+                    <label id="q3" > 3. How much information about the process behind the AI recommendation is revealed by the following statements? (1- None, 7- All)
                   </div>
                   <div class="rightTab">
                   	<table id="usability">
@@ -303,7 +318,7 @@
 
               <div class="rowTab">
                  <div class="labels">
-                    <label id="q3" > 3. How long (in seconds) do you feel it took the AI systems to give you the recommendation? Please enter a value for each AI system.
+                    <label id="q4" > 4. How long (in seconds) do you feel it took the AI systems to give you the recommendation? Please enter a value for each AI system.
                   </div>
                   <div class="rightTab">
                   	DaveAI:
@@ -342,8 +357,9 @@ $(document).ready(function(){
 
 	$('#done').click(function(event) {
 
-		var bestAI = $('#dropdown').val();
-	    let msg1 = new OSC.Message('/usability', bestAI);
+		var lowtrustAI = $('#dropdown0').val();
+		var hightrustAI = $('#dropdown1').val();
+	    let msg1 = new OSC.Message('/usability', lowtrustAI, hightrustAI);
 	    osc.send(msg1, { host: '127.0.0.1', port: 8080 });
 
 		$('#usability tbody tr').each(function(){
