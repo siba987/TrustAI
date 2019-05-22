@@ -478,9 +478,11 @@ osc.on('/PreQuestionnaire3_done', message => {
 
 osc.on('/usability', message => {
 
-  let bestAI = message['args'][0];
+  let lowTrust = message['args'][0];
+  let highTrust = message['args'][1];
   
-   logger['study']['UsabilityQ'].push(['Best AI', bestAI]);
+   logger['study']['UsabilityQ'].push({ 'Low Trust AI': lowTrust, 
+                                        'High Trust AI': highTrust});
    console.log('this is the best!')
   
 });
