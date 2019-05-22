@@ -415,9 +415,9 @@ osc.on('/PostQuestionnaire2_done', message => {
 // PreQuestionnaire3
 osc.on('/PostQuestionnaire3', message => {
   // TOOD
-  let quesId = message['args'][0];
-  let question = message['args'][1];
-  let answer = message['args'][2];
+  let quesId = message['args'][2];
+  let question = message['args'][0];
+  let answer = message['args'][1];
   let trust = message['args'][3];
   /*logger['study']['PostQuestionnaire3']['overall_trust']= trust;
   logger['study']['PostQuestionnaire3'].push([quesId, question, answer]);*/
