@@ -24,6 +24,12 @@
 				border: 1px solid #fff;
 			}
 
+			input.MyButton:disabled {
+			        background: #F5F5F5;
+			        color : #C3C3C3;
+			        cursor:none;
+			        pointer-events: none;
+			}
 			body { 
 				background-color: #EEEEEE; 
 				padding-bottom: 24px; 
@@ -224,7 +230,7 @@
 
 				<div class="rowTab">
                  <div class="labels">
-                    <label id="crt4" > 1. Which AI did you trust the most? And why?
+                    <label id="q1" > 1. Which AI did you trust the most? And why did you choose this AI?
                     	<select id="dropdown" name="currentPos" class="dropdown">
 			              <option disabled="" selected="" value="">Select an option</option>
 			              <option value="davebio">Dave Bio</option>
@@ -233,13 +239,13 @@
 			            </select>
                   </div>
                   <div class="rightTab">
-                    <input autofocus="" type="text" id="reason_trust" class="input-field" placeholder="Long answer" required="">
+                    <input autofocus="" type="text" id="reason_trust" class="input-field" placeholder="Enter text here" required="">
                   </div>
               </div> <br><br>
 
               <div class="rowTab">
                  <div class="labels">
-                    <label id="crt4" > 2. Please rate the following statements according to the degree of transparency (1- least transparent, 7- most transparent)
+                    <label id="q2" > 2. How much information about the process behind the AI recommendation is revealed by the following statements? (1- None, 7- All)
                   </div>
                   <div class="rightTab">
                   	<table id="usability">
@@ -297,13 +303,19 @@
 
               <div class="rowTab">
                  <div class="labels">
-                    <label id="crt4" > 3. How long was the delay for the last AI system that you used? Please round to the nearest whole number.
+                    <label id="q3" > 3. How long (in seconds) do you feel it took the AI systems to give you the recommendation? Please enter a value for each AI system.
                   </div>
                   <div class="rightTab">
-                    <input autofocus="" type="text" id="del" class="input-field" placeholder="Enter a number" required="">
+                  	DaveAI:
+                    <input autofocus="" type="text" id="deldave" class="input-field" placeholder="Enter a number" required=""> <br>
+                    MaveAI: 
+                    <input autofocus="" type="text" id="delmave" class="input-field" placeholder="Enter a number" required=""> <br>
+                    JaveAI:
+                    <input autofocus="" type="text" id="deljave" class="input-field" placeholder="Enter a number" required="">
                   </div>
               </div> <br><br>
-				 <input class="MyButton" type="button" value="Next" title="Next Page" tabindex="200" >
+				 <input class="MyButton" id ="done" type="button" value="Next" title="Next Page" tabindex="200" disabled="disabled">
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">			
 var osc = new OSC();
@@ -311,25 +323,45 @@ osc.open({ host: '127.0.0.1', port: 8080 });
 
 $(document).ready(function(){
 
-	 $('#usability tbody tr').each(function(){
+	$(".input-field").change(function(){
+    var enablebtn = true;
+
+    $(".input-field").each(function(){
+        if($(this).val() == '')
+            enablebtn = false;
+
+    });
+
+    if(enablebtn)
+        $("#done").attr('disabled',false);
+    else
+        $("#done").attr('disabled',true);
+  });
+
+	
+
+	$('#done').click(function(event) {
+
+		$('#usability tbody tr').each(function(){
               var question = $(this).find('td').first().text();
               var rating = $(this).find('td input[type="radio"]:checked').first().val();
 
-              //logArray.push(question + ', ' + answer);
-              /*let msg = new OSC.Message('/usability', question, rating);
-              osc.send(msg, { host: '127.0.0.1', port: 8080 });*/
+              console.log(question + ', ' + rating);
+              let msg = new OSC.Message('/usability2', question, rating);
+              osc.send(msg, { host: '127.0.0.1', port: 8080 });
           });
 
-	$('.MyButton').click(function(event) {
-		var bestAI = $('#dropdown').val();
-		var reason_trust = $('#reason_trust').val();
-		var p_delay = $('#del').val();
+		$(".input-field").each(function(){
+	        var id = $(this).attr('id');
+	             // var question = $(this).find('td').first().text();
+	        var answer = $(this).val();
+			var bestAI = $('#dropdown').val();
+			//console.log(bestAI, reason_trust, p_delay);
+			//log information to file
 
-		//console.log(bestAI, reason_trust, p_delay);
-		//log information to file
-		let msg = new OSC.Message('/usability2', bestAI, reason_trust, p_delay);
-        osc.send(msg, { host: '127.0.0.1', port: 8080 });
-
+			let msg = new OSC.Message('/usability2', id, answer, bestAI);
+	        osc.send(msg, { host: '127.0.0.1', port: 8080 });
+	    });
 		window.location.href='survey.html';
 	});
 
