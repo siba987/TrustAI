@@ -1,6 +1,8 @@
+In this research project within the domain of Human-Computer Interaction and Artificial Intelligence, I led the full-stack design and development of a college admissions AI platform to study the key factors affecting trust in an AI system recommendations. This project was done in collaboration with a multidisciplinary five-member team at Sorbonne University, University Paris Sud and University of Waterloo.
+
 # OSC message JS <> Python
 
-## Install 
+## Installation instructions
 ### For Mac:
 Open one terminal window:
 1. navigate to folder on computer (ensure python installed)
